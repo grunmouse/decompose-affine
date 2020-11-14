@@ -113,8 +113,7 @@ describe('decompose', ()=>{
 		assert.equal(m[1].length, 2);
 		return true;
 	});
-	
-	/**/
+
 	
 	//Первая группа
 	[
