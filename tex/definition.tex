@@ -1,0 +1,62 @@
+\section{Элементарные центроафинные преобразования}
+
+\paragraph{Матрица поворота}
+
+$$R = \begin{pmatrix}
+	\cos\alpha & -\sin\alpha \\
+	\sin\alpha & \cos\alpha
+\end{pmatrix}.
+$$
+
+$$\det R = 1.$$
+
+\paragraph{Матрица сдвига по x}
+$$
+X = \begin{pmatrix}
+	1 & h_x \\
+	0 & 1
+\end{pmatrix}.
+$$
+
+$$\det X = 1.$$
+
+\paragraph{Матрица сдвига по y}
+$$
+Y = \begin{pmatrix}
+	1 & 0 \\
+	h_y & 1
+\end{pmatrix}.
+$$
+
+$$\det Y = 1.$$
+
+\paragraph{Матрица неоднородного масшабирования}
+$$S=
+\begin{pmatrix}
+	s_x & 0 \\
+	0 & s_y
+\end{pmatrix}
+$$
+
+$$\det S = s_x s_y.$$
+
+\section{Постановка задачи}
+
+Исходную матрицу $A$ нужно проверить на разложимость в указанный порядок элементарных преобразований и разложить если это возможно.
+$$A = 
+\begin{pmatrix}
+	a_{11} & a_{12}\\
+	a_{21} & a_{22}
+\end{pmatrix}
+$$
+
+Может быть разложена одним из 18 способов:
+$$\begin{array}{cccccc}
+	A = SXR; & A = SRX; & A = XSR; & A = XRS; & A = RSX; & A = RXS; \\
+	A = SYR; & A = SRY; & A = YSR; & A = YRS; & A = RSY; & A = RYS; \\
+	A = SXY; & A = SYX; & A = XSY; & A = XYS; & A = YSX; & A = YXS.
+\end{array}$$
+
+\deffn{pos}
+
+Введём функцих $\pos(M)$, которая принимает тип элементарного преобразования и равна номеру позиции этого типа в разложении, начиная с 1. Если тип не участвует в разложении, то $\pos(M) = 0$.

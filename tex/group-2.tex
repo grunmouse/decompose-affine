@@ -1,0 +1,96 @@
+\section{Вторая группа разложений}
+
+Случаи, когда матрица поворота идёт первым или последним множителем.
+
+$$
+SX = \begin{pmatrix}s_x & h_xs_x \\ 0 & s_y\end{pmatrix};\;
+XS = \begin{pmatrix}s_x & h_xs_y \\ 0 & s_y\end{pmatrix};\;
+SY = \begin{pmatrix}s_x & 0 \\ h_ys_y & s_y\end{pmatrix};\;
+YS = \begin{pmatrix}s_x & 0 \\ h_ys_x & s_y\end{pmatrix};
+$$
+
+$$
+\begin{cases}
+	\begin{cases}
+		a_{11}^2 + a_{21}^2 = s_x^2, \\
+		\sin\alpha = a_{21}/s_x,\\
+		\cos\alpha = a_{11}/s_x,
+	\end{cases} & \pos(R)=1 \wedge \pos(X)>0;\\
+	\begin{cases}
+		a_{21}^2 + a_{22}^2 = s_y^2, \\
+		\sin\alpha = a_{21}/s_y,\\
+		\cos\alpha = a_{22}/s_y,
+	\end{cases} & \pos(R)=3 \wedge \pos(X)>0;\\
+	\begin{cases}
+		a_{12}^2 + a_{22}^2 = s_y^2,\\
+		\sin\alpha = -a_{12}/s_y,\\
+		\cos\alpha = a_{22}/s_y,
+	\end{cases} & \pos(R)=1 \wedge \pos(Y)>0;\\
+	\begin{cases}
+		a_{11}^2 + a_{12}^2 = s_x^2,\\
+		\sin\alpha = -a_{12}/s_x,\\
+		\cos\alpha = a_{11}/s_x,
+	\end{cases} & \pos(R)=3 \wedge \pos(Y)>0.\\
+\end{cases}
+$$
+
+$$\begin{cases}
+	h_x s_x\cos\alpha - s_y\sin\alpha = a_{12}, & RSX;\\
+	h_x s_y\cos\alpha - s_y\sin\alpha = a_{12}, & RXS;\\
+	h_x s_x\cos\alpha - s_x\sin\alpha = a_{12}, & SXR;\\
+	h_x s_y\cos\alpha - s_x\sin\alpha = a_{12}, & XSR.
+\end{cases}$$
+
+$$\begin{cases}
+	h_y s_y\cos\alpha + s_x\sin\alpha = a_{21}, & RSY;\\
+	h_y s_x\cos\alpha + s_x\sin\alpha = a_{21}, & RYS;\\
+	h_y s_y\cos\alpha + s_y\sin\alpha = a_{21}, & SYR;\\
+	h_y s_x\cos\alpha + s_y\sin\alpha = a_{21}, & YSR.
+\end{cases}$$
+
+Для этих уравнений можно составить обобщённый алгоритм решения, если ввести промежуточные переменные
+$b_x$, $b_y$, $d$, $p$, $s$.
+
+$$\begin{cases}
+	b_y = a_{21}, & \pos(X)>0;\\
+	b_y = -a_{12}, & \pos(Y)>0.\\
+\end{cases}$$
+
+$$\begin{cases}
+	b_x = a_{11}, & \pos(R) < \pos(X) \vee \pos(Y) > 0 \wedge \pos(R) = 3;\\
+	b_x = a_{22}, & \pos(R) < \pos(Y) \vee \pos(X) > 0 \wedge \pos(R) = 3.
+\end{cases}$$
+
+$$s^2 = b_x^2 + b_y^2;$$
+$$s = \pm \sqrt{b_x^2 + b_y^2}.$$
+Таким образом получаются два решения.
+
+$$\cos\alpha = \frac{b_x}{s};$$
+$$\sin\alpha = \frac{b_y}{s};$$
+$$d = \frac{b_y \det A}{s^2}.$$
+
+$$\begin{cases}
+	\begin{cases}
+		s_x = s,\\
+		s_y = \frac{\det A}{s},
+	\end{cases} & \pos(R) < \pos(X) \vee \pos(Y) > 0 \wedge \pos(R) = 3;\\
+	\begin{cases}
+		s_y = s,\\
+		s_s = \frac{\det A}{s},
+	\end{cases} & \pos(R) < \pos(Y) \vee \pos(X) > 0 \wedge \pos(R) = 3.
+\end{cases}$$
+
+$$\begin{cases}
+	p = \frac{a_{12} + d}{\cos\alpha}, & \pos(X)>0;\\
+	p = \frac{a_{21} + d}{\cos\alpha}, & \pos(Y)>0.
+\end{cases}$$
+
+$$\begin{cases}
+	h_x = \frac{p}{s_x}, & \pos(S)<\pos(X);\\
+	h_x = \frac{p}{s_y}, & \pos(S)>\pos(X).
+\end{cases}$$
+
+$$\begin{cases}
+	h_y = \frac{p}{s_y}, & \pos(S)<\pos(Y);\\
+	h_y = \frac{p}{s_x}, & \pos(S)>\pos(Y).
+\end{cases}$$

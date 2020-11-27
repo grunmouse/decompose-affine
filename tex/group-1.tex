@@ -1,0 +1,78 @@
+\section{Первая группа разложений}
+
+Различные комбинации $X$, $Y$, $S$.
+
+Если $X$ и $Y$ стоят рядом, то мы имеем множитель
+$$XY = \begin{pmatrix}
+	h_xh_y+1 & h_x \\
+	h_y & 1
+\end{pmatrix};\;
+$$
+или
+$$
+YX = \begin{pmatrix}
+	1 & h_x \\
+	h_y & h_xh_y+1
+\end{pmatrix}.$$
+Умножая на них $S$ с любой стороны мы получим либо $s_y = a_{22}$, либо $s_x = a_{11}$.
+
+Не зависимо от порядка XY, в зависимости от того, с какой стороны на эту пару умножен S
+$$\begin{cases}
+	\begin{cases}
+		h_xs_y = a_{12},\\
+		h_ys_x = a_{21},
+	\end{cases}
+	& \pos(S)=3;\\
+	\begin{cases}
+		h_xs_x = a_{12},\\
+		h_ys_y = a_{21},
+	\end{cases}
+	& \pos(S)=1.
+\end{cases}
+$$
+
+
+Если между $X$ и $Y$ стоит S, мы получим
+
+$$XSY =
+\begin{pmatrix}
+	h_x h_y s_y + s_x & h_x s_y \\
+	h_y s_y  & s_y
+\end{pmatrix};
+$$
+
+$$YSX =
+\begin{pmatrix}
+s_x & h_x s_x\\
+h_y s_x & s_y + h_x h_y s_x
+\end{pmatrix}.
+$$
+
+Т.е. у нас аналогично, либо $s_y = a_{22}$, либо $s_x = a_{11}$.
+
+Недостающий масштаб мы всегда можем получить из уравнения
+$$\det A = s_x s_y.$$
+
+Запишем
+$$\begin{cases}
+	\begin{cases}
+		s_y = a_{22},\\
+		s_x = \frac{\det{A}}{s_y},\\
+	\end{cases} & \pos(X)<\pos(Y);\\
+	\begin{cases}
+		s_x = a_{11},\\
+		s_y = \frac{\det{A}}{s_x},\\
+	\end{cases} & \pos(Y)<\pos(X).
+\end{cases}$$
+
+
+Алгоритм нахождения $h_x$ и $h_y$ тоже можно обобщить:
+$$\begin{cases}
+	h_x = \frac{a_{12}}{s_y}, & \pos(X)<\pos(S);\\
+	h_x = \frac{a_{12}}{s_x}, & \pos(X)>\pos(S).
+\end{cases}$$
+
+$$\begin{cases}
+	h_y = \frac{a_{21}}{s_x}, & \pos(Y)<\pos(S);\\
+	h_y = \frac{a_{21}}{s_y}, & \pos(Y)>\pos(S).
+\end{cases}$$

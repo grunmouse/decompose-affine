@@ -1,0 +1,76 @@
+\section{Третья группа разложений}
+
+Случаи, когда $R$ стоит между $S$ и $X$ или $Y$.
+
+$$SRX = 
+\begin{pmatrix}
+	{s_x}\cos\alpha  & \left({h_x} \cos\alpha -\sin\alpha\right)  {s_x}\\
+	{s_y}\sin\alpha  & \left({h_x} \sin\alpha +\cos\alpha\right)  {s_y}
+\end{pmatrix}
+$$
+$$XRS = \begin{pmatrix}
+	{h_x} {s_x} \sin\alpha + {s_x} \cos\alpha & {h_x} {s_y} \cos\alpha-{s_y} \sin\alpha\\
+	{s_x} \sin\alpha & {s_y} \cos\alpha
+\end{pmatrix}$$
+
+$$YRS = \begin{pmatrix}
+{s_x} \cos\alpha & -{s_y} \sin\alpha\\
+{h_y} {s_x} \cos\alpha+{s_x} \sin\alpha & {s_y} \cos\alpha-{h_y} {s_y} \sin\alpha
+\end{pmatrix}$$
+$$SRY =
+\begin{pmatrix}
+\left( \cos\alpha-{h_y} \sin\alpha\right)  {s_x} & -{s_x} \sin\alpha\\
+\left( {h_y} \cos\alpha+\sin\alpha\right)  {s_y} & {s_y} \cos\alpha
+\end{pmatrix}
+$$
+
+Легко видеть, что в каждом варианте присутствуют два члена, произведение которых равно $\pm s_x s_y \sin\alpha \cos\alpha$.
+
+Введём допонительную переменную
+
+$$T = \cos\alpha\sin\alpha.$$
+
+Образуется общая часть расчета:
+
+$$\sin(2\alpha) = 2T;$$
+
+$$\cos(2\alpha) = \pm \sqrt{1-4T^2};$$
+
+$$\cos\alpha = \pm \sqrt{\frac{1 + \cos(2\alpha)}{2}};$$
+
+$$\sin\alpha = \frac{T}{\cos\alpha}.$$
+
+Таким образом, условие разложимости - $-2<T<2$, и, в зависимости от выбора знаков, имеется четыре решения.
+
+$$\begin{cases}
+	T = \frac{a_{11}a_{21}}{\det A}, & SRX;\\
+	T = \frac{a_{21}a_{22}}{\det A}, & XSR;\\
+	T = \frac{-a_{11}a_{12}}{\det A}, & YSR;\\
+	T = \frac{-a_{12}a_{22}}{\det A}, & SRY.
+\end{cases}
+
+$$T = \frac{a_{11}a_{21}}{\det{A}};$$
+
+$$s_x = \frac{a_{11}}{\cos\alpha};$$
+$$s_x = \frac{a_{11}}{\cos\alpha};$$
+
+
+\[{h_x}=\frac{{s_x} \sin\alpha+{a_{12}}}{{s_x} \cos\alpha}\]
+
+
+
+$$T = \frac{a_{21}a_{22}}{\det A};$$
+
+$$s_y = \frac{a_{22}}{\cos\alpha};$$
+
+\[{h_x}=\frac{{s_y} \sin\alpha+{a_{12}}}{{s_y} \cos\alpha}\]
+
+
+
+$$T = -\frac{a_{11}a_{12}}{\det A};$$
+
+
+\[{h_y}=-\frac{{s_x} \sin\alpha-{a_{21}}}{{s_x} \cos\alpha}\]
+
+
+

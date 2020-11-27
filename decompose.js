@@ -50,17 +50,14 @@ function decompose(A, P, V=0){
 
 	const D = A[0][0]*A[1][1] - A[0][1]*A[1][0];
 	
-	//console.log('D ', D);
-	
 	if(pos("R")===0){
 		//console.log('R=0');
 		//Первая группа разложений
-		if(pos("X")<pos("Y")){
-			//console.log('X<Y');
+		if(pos("X") < pos("Y")){
 			s_y = A[1][1];
 			s_x = D/s_y;
 		}
-		else if(pos("Y")<pos("X")){
+		else if(pos("Y") < pos("X")){
 			s_x = A[0][0];
 			s_y = D/s_x;
 		}
@@ -68,98 +65,85 @@ function decompose(A, P, V=0){
 			throw new Error();
 		}
 		
-		if(pos("X")<pos("S")){
-			//console.log('X<S');
+		if(pos("X") < pos("S")){
 			h_x = A[0][1]/s_y;//X<S
 		}
-		else if(pos("S")<pos("X")){
+		else if(pos("S") < pos("X")){
 			h_x = A[0][1]/s_x; //S<X
 		}
 		else{
 			throw new Error();
 		}
 		
-		if(pos("Y")<pos("S")){
-			//console.log('Y<S');
+		if(pos("Y") < pos("S")){
 			h_y = A[1][0]/s_x; //Y<S
 		}
-		else if(pos("S")<pos("Y")){
+		else if(pos("S") < pos("Y")){
 			h_y = A[1][0]/s_y; //S<Y
 		}
 		else{
 			throw new Error();
 		}
 		
-		//console.log({s_x, s_y, h_x, h_y});
 	}
 	else if(pos("R")!==2){
+		//Вторая группа разложений, допускает два решения
 		let sigx = (V & 1) ? -1 : 1;
 		let sigy = sign(D)*sigx;
+		
+		const trig = (a, b, sign)=>{
+			let s = sign * sqrt(a**2 + b**2);
+			
+			return [s, D/s, a/s, b/s, D/s * b/s];
+		};
+		
+		let dh, b, axis;
+		
+		if(pos("X") > 0){
+			b = A[1][0];
+		}
+		else if(pos("Y") > 0){
+			b = -A[0][1];
+		}
+		else{
+			throw new Error();
+		}
+		
+		if(pos("R") < pos("X") || pos("Y") > 0 && pos("R") === 3 ){
+			//pos("X") > 0 && pos("R") < pos("X") || pos("Y") > 0 && pos("R") > pos("Y")
+			[s_x, s_y, cosa, sina, dh] = trig(A[0][0], b, sigx);
+		}
+		else if(pos("R") < pos("Y") || pos("X") > 0 && pos("R") === 3){
+			//pos("X") > 0 && pos("R") > pos("Y") || pos("Y") > 0 && pos("R") < pos("Y")
+			[s_y, s_x, cosa, sina, dh] = trig(A[1][1], b, sigy);
+		}
+		else{
+			throw new Error();
+		}
 
 		if(pos("X")){
-			
-			if(pos("R")===1){
-				s_x = sigx * sqrt(A[0][0]**2 + A[1][0]**2); // pm
-				s_y = D/s_x;
+			let hbase = (A[0][1] + dh)/cosa;
 
-				cosa = A[0][0]/s_x;
-				sina = A[1][0]/s_x;
-
-				if(pos("S")<pos("X")){
-					h_x = (A[0][1] + s_y*sina)/(s_x*cosa);
-				}
-				else if(pos("X")<pos("S")){
-					h_x = (A[0][1] + s_y*sina)/(s_y*cosa);
-				}
+			if(pos("S")<pos("X")){
+				//S < X
+				h_x = hbase/s_x;
 			}
-			else if(pos("R")===3){
-				s_y = sigy * sqrt(A[1][0]**2 + A[1][1]**2); // pm
-				s_x = D/s_y;
-
-				sina = A[1][0]/s_y;
-				cosa = A[1][1]/s_y;
-				if(pos("S")<pos("X")){
-					h_x = (A[0][1] + s_x*sina)/(s_x*cosa);
-				}
-				else if(pos("X")<pos("S")){
-					h_x = (A[0][1] + s_x*sina)/(s_y*cosa);
-				}
-			}
-			else{
-				throw new Error();
+			else if(pos("X")<pos("S")){
+				//X < S
+				h_x = hbase/s_y;
 			}
 		}
 		else if(pos("Y")){
-			if(pos("R")===1){
-				s_y = sigy * sqrt(A[0][1]**2 + A[1][1]**2); // pm
-				sina = -A[0][1]/s_y;
-				cosa = A[1][1]/s_y;
-				s_x = D/s_y;
-				
-				if(pos("S")<pos("Y")){
-					h_y = (A[1][0] - s_x*sina)/(s_y*cosa);
-				}
-				else if(pos("Y")<pos("S")){
-					h_y = (A[1][0] - s_x*sina)/(s_x*cosa);
-				}
-			}
-			else if(pos("R")===3){
-				s_x = sigx * sqrt(A[0][0]**2 + A[0][1]**2); //pm
-				cosa = A[0][0]/s_x;
-				sina = -A[0][1]/s_x;
-				s_y = D/s_x;
-
-				if(pos("S")<pos("Y")){
-					h_y = (A[1][0] - s_y*sina)/(s_y*cosa);
-				}
-				else if(pos("Y")<pos("S")){
-					h_y = (A[1][0] - s_y*sina)/(s_x*cosa);
-				}
-			}
-			else{
-				throw new Error();
-			}
+			let hbase = (A[1][0] - dh)/cosa;
 			
+			if(pos("S") < pos("Y")){
+				//S < Y
+				h_y = hbase/s_y;
+			}
+			else if(pos("Y") < pos("S")){
+				//Y < S
+				h_y = hbase/s_x;
+			}
 		}
 		else{
 			throw new Error();
@@ -211,31 +195,35 @@ function decompose(A, P, V=0){
 			sina = T/cosa;
 		}
 
-		if(P === "SRX"){
-			s_x = A[0][0]/cosa;
-			s_y = D/s_x;
-			h_x = (A[0][1] + s_x*sina)/(s_x*cosa);
-		}
-		else if(P === "XRS"){
-			s_y = A[1][1]/cosa;
-			s_x = D/s_y;
-			h_x = (A[0][1] + s_y*sina)/(s_y*cosa);
-		}
-		else if(P === "YRS"){
-			s_x = A[0][0]/cosa;
-			s_y = D/s_x;
-			
-			h_y = (A[1][0] - s_x*sina)/(s_x*cosa);
-		}
-		else if(P === "SRY"){
-			s_y = A[1][1]/cosa;
-			s_x = D/s_y;
+		let hbase, dh, nh;
+		
 
-			h_y = (A[1][0] - s_y*sina)/(s_y*cosa);
+		if(pos("X")===3 || pos("Y") === 1){
+			s_x = A[0][0]/cosa;
+			s_y = D/s_x;
+			dh = s_x*sina;
+			nh = s_x*cosa;
+
+		}
+		else if(pos("Y")===3 || pos("X") === 1){
+			s_y = A[1][1]/cosa;
+			s_x = D/s_y;
+			dh = s_y*sina;
+			nh = s_y*cosa;
 		}
 		else{
 			throw new Error();
 		}
+		
+		if(pos("X")>0){
+			h_x = (A[0][1] + dh)/nh;
+		}
+		
+		if(pos("Y")>0){
+			h_y = (A[1][0] - dh)/nh;
+		}
+
+
 	}
 	else{
 		throw new Error();
