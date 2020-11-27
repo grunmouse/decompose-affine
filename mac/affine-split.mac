@@ -1,0 +1,59 @@
+
+affineX(h):=matrix([1,h],[0,1]);
+affineY(h):=matrix([1,0],[h,1]);
+affineS(x,y):=matrix([x,0],[0,y]);
+affineR(s,c):=matrix([c,-s],[s,c]);
+affinePos(S,a,b,c):=if sequal(S,a) then 1 else (if sequal(S,b) then 2 else (if sequal(S,c) then 3 else 0));
+affineSplitParser(a,b,c):=block([arr],arr['R]:affinePos('R,a,b,c),arr['S]:affinePos('S,a,b,c),arr['X]:affinePos('X,a,b,c),arr['Y]:affinePos('Y,a,b,c),arr);
+affinePF(S,x,y,h_x,h_y,s,c):=if sequal(S,'R) then affineR(s,c) else (if sequal(S,'X) then affineX(h_x) else (if sequal(S,'Y) then affineY(h_y) else (if sequal(S,'S) then affineS(x,y) else 0)));
+
+affineSplit(A, a,b,c):=block([arr:affineSplitParser(a,b,c),D:determinant(A),x,y,h_x,h_y,si,co],
+    if arr['X]>0 and arr['Y]>0 then (
+      if arr['X]<arr['Y] then (y:A[2][2],x:D/y)
+      else if arr['Y]<arr['X] then (
+          (x:A[1][1],y:D/x),
+          if arr['S]=1 then (h_x:A[1][2]/x, h_y:A[2][1]/y)
+          else if arr['S]=3 then (h_x:A[1][2]/y, h_y:A[2][1]/x)
+          else if arr['X]<arr['S] then (h_x:A[1][2]/y, h_y:A[2][1]/y)
+          else if arr['Y]<arr['S] then (h_x:A[1][2]/x, h_y:A[2][1]/x)
+		)
+    )
+    else if arr['R]=1 then (
+      if arr['X]>0 then (
+        x:sqrt(A[1][1]^2+A[2][1]^2), 
+        si:A[2][1]/x, 
+        co:A[1][1]/x, 
+        y:D/x,
+        if arr['S]=2 then (h_x:(A[1][2]+y*si)/x/co) /* RSX */
+        else (h_x:(A[1][2]+y*si)/y/co) /* RXS */
+      )
+      else if arr['Y]>0 then (
+        y:sqrt(A[1][2]^2+A[2][2]^2),
+        si:-A[1][2]/y,
+        co:A[2][2]/y,
+        x:D/y,
+        if arr['S]=2 then (h_y:(A[2][1]-x*si)/y/co) /* RSY */
+        else (h_y:(A[2][1]-x*si)/y/co) /* RYS */
+      )
+    )
+    else if arr['R]=3 then (
+      if arr['X]>0 then (
+        y:sqrt(A[2][1]^2+A[2][2]^2), 
+        si:A[2][1]/y, 
+        co:A[2][2]/y, 
+        x:D/y,
+        if arr['S]=2 then (h_x:(A[1][2]+x*si)/y/co) /* XSR */
+        else (h_x:(A[1][2]+x*si)/x/co) /* SXR */ 
+      )
+      else if arr['Y]>0 then (
+        x:sqrt(A[1][1]^2+A[1][2]^2),
+        si:-A[1][2]/x,
+        co:A[1][1]/x,
+        y:D/x,
+        if arr['S]=2 then (h_y:(A[2][1]-y*si)/x/co) /* YSR */
+        else (h_y:(A[2][1]-x*si)/x/co) /* SYR */
+      )
+    )
+    ,
+    [affinePF(a,x,y,h_x,h_y,si,co),affinePF(b,x,y,h_x,h_y,si,co),affinePF(c,x,y,h_x,h_y,si,co)]
+);
