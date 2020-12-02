@@ -151,22 +151,25 @@ function decompose(A, P, V=0){
 	}
 	else if(pos("R")===2){
 		let T;
-		if(P === "SRX"){
-			T = A[0][0]*A[1][0]/D;
+		
+		let p, q;
+		
+		if(pos("X")>0){
+			p = A[1][0];
 		}
-		else if(P === "XRS"){
-			T = A[1][0]*A[1][1]/D;
-		}
-		else if(P === "YRS"){
-			T = -A[0][0]*A[0][1]/D;
-		}
-		else if(P === "SRY"){
-			T = -A[0][1]*A[1][1]/D;
-		}
-		else{
-			throw new Error();
+		else if(pos("Y")>0){
+			p = -A[0][1];
 		}
 		
+		if(pos("X") === 3 || pos("Y") === 1){
+			q = A[0][0];
+		}
+		else if(pos("X") === 1 || pos("Y") === 3){
+			q = A[1][1];
+		}
+		
+		T = p*q/D;
+
 		if(T===0){
 			//4 варианта
 			if(V===0){
@@ -202,14 +205,14 @@ function decompose(A, P, V=0){
 			s_x = A[0][0]/cosa;
 			s_y = D/s_x;
 			dh = s_x*sina;
-			nh = s_x*cosa;
+			nh = A[0][0];
 
 		}
 		else if(pos("Y")===3 || pos("X") === 1){
 			s_y = A[1][1]/cosa;
 			s_x = D/s_y;
 			dh = s_y*sina;
-			nh = s_y*cosa;
+			nh = A[1][1];
 		}
 		else{
 			throw new Error();
@@ -224,6 +227,18 @@ function decompose(A, P, V=0){
 		}
 
 
+	}
+	else if(pos("S")===0){
+		let s = Math.sqrt(D); //pm
+		if(pos("R")!==2){
+			throw new Error();
+		}
+		else if(pos("R")===2){
+			throw new Error();
+		}
+		else{
+			throw new Error();
+		}
 	}
 	else{
 		throw new Error();

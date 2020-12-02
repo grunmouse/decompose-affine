@@ -2,6 +2,8 @@
 
 Случаи, когда $R$ стоит между $S$ и $X$ или $Y$.
 
+Диагностический признак $\pos(R)=2$.
+
 $$SRX = 
 \begin{pmatrix}
 	{s_x}\cos\alpha  & \left({h_x} \cos\alpha -\sin\alpha\right)  {s_x}\\
@@ -30,6 +32,22 @@ $$
 
 $$T = \cos\alpha\sin\alpha.$$
 
+Таким образом, условие разложимости - $-2<T<2$. 
+
+Для вычисления $T$ введём промежуточные переменные $p$ и $q$:
+
+$$\begin{cases}
+	p = a_{21}, & \pos(X)>0;\\
+	p = -a_{12}, & \pos(Y)>0.
+\end{cases}$$
+
+$$\begin{cases}
+	q = a_{11}, & \pos(X)=3 \vee \pos(Y)=1;\\
+	q = a_{22}, & \pos(X)=1 \vee \pos(Y)=3.
+\end{cases}$$
+
+$$T = \frac{pq}{\det A}.$$
+
 Образуется общая часть расчета:
 
 $$\sin(2\alpha) = 2T;$$
@@ -40,37 +58,38 @@ $$\cos\alpha = \pm \sqrt{\frac{1 + \cos(2\alpha)}{2}};$$
 
 $$\sin\alpha = \frac{T}{\cos\alpha}.$$
 
-Таким образом, условие разложимости - $-2<T<2$, и, в зависимости от выбора знаков, имеется четыре решения.
+В зависимости от выбора знаков, имеется четыре решения.
+
+В случае, когда $T=0$, примем решения
+$$\left[ \begin{gathered}
+\begin{cases}
+	\sin\alpha = 0,\\
+	\cos\alpha = \pm 1;
+\end{cases}\\
+\begin{cases}
+	\sin\alpha = \pm 1,\\
+	\cos\alpha = 0.
+\end{cases}
+\end{gathered}\right.$$
+
+Для обобщения расчётов, введём промежуточные переменные $d$, $n$.
 
 $$\begin{cases}
-	T = \frac{a_{11}a_{21}}{\det A}, & SRX;\\
-	T = \frac{a_{21}a_{22}}{\det A}, & XSR;\\
-	T = \frac{-a_{11}a_{12}}{\det A}, & YSR;\\
-	T = \frac{-a_{12}a_{22}}{\det A}, & SRY.
-\end{cases}
-
-$$T = \frac{a_{11}a_{21}}{\det{A}};$$
-
-$$s_x = \frac{a_{11}}{\cos\alpha};$$
-$$s_x = \frac{a_{11}}{\cos\alpha};$$
-
-
-\[{h_x}=\frac{{s_x} \sin\alpha+{a_{12}}}{{s_x} \cos\alpha}\]
-
-
-
-$$T = \frac{a_{21}a_{22}}{\det A};$$
-
-$$s_y = \frac{a_{22}}{\cos\alpha};$$
-
-\[{h_x}=\frac{{s_y} \sin\alpha+{a_{12}}}{{s_y} \cos\alpha}\]
+	\begin{cases}
+		s_x = \frac{a_{11}}{\cos\alpha},\\
+		s_y = \frac{\det A}{s_x},\\
+		d = s_x \sin\alpha,\\
+		n = a_{11},\\
+	\end{cases} & \pos(X)=3 \vee \pos(Y)=1;\\
+	\begin{cases}
+		s_y = \frac{a_{22}}{\cos\alpha},\\
+		s_x = \frac{\det A}{s_y},\\
+		d = s_y \sin\alpha,\\
+		n = a_{22},
+	\end{cases} & \pos(Y)=3 \vee \pos(X) = 1.
+\end{cases}$$
 
 
-
-$$T = -\frac{a_{11}a_{12}}{\det A};$$
-
-
-\[{h_y}=-\frac{{s_x} \sin\alpha-{a_{21}}}{{s_x} \cos\alpha}\]
-
-
+$$h_x = \frac{a_{12} + d}{b}.$$
+$$h_y = \frac{a_{21} - d}{b}.$$
 

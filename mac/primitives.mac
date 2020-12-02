@@ -1,0 +1,14 @@
+R:affineR(sin(a),cos(a));
+S:affineS(s_x,s_y);
+Y:affineY(h_y);
+X:affineX(h_x);
+
+R_1:affineR(sin(a_1),cos(a_1));
+R_2:affineR(sin(a_2),cos(a_2));
+
+D:affineS(d,1/d);
+
+X_1:affineX(h_x1);
+X_2:affineX(h_x2);
+Y_1:affineY(h_y1);
+Y_2:affineY(h_y2);
