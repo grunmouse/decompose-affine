@@ -63,7 +63,7 @@ function product(M){
 	return l.reduce(mult, f);
 }
 
-const TOLERANCE = 1e-6;
+const TOLERANCE = 5e-5;
 
 function approx(A, B){
 	return true &&
@@ -91,7 +91,7 @@ const control = (P, V)=>(A)=>{
 	
 function once(P, V=0){
 	it('once '+P + ' ' + V, ()=>{
-		control(P, V)(matrix().generator(1));
+		control(P, V)(matrix(P).generator(1));
 	});
 }
 
@@ -155,5 +155,27 @@ describe('decompose', ()=>{
 		jsc.property(P +' 3', matrix(P), control(P, 3));
 	});
 
+	//Четвёртая группа
+	[
+		'XYR',
+		'YXR',
+		'RXY',
+		'RYX'
+	].forEach((P)=>{
+		jsc.property(P, matrix(P), control(P));
+		jsc.property(P + ' 1', matrix(P), control(P, 1));
+		//once(P);
+	});
+	
+	//Пятая группа
+	[
+		'XRY',
+		'YRX'
+	].forEach((P)=>{
+		jsc.property(P, matrix(P), control(P));
+		jsc.property(P + ' 1', matrix(P), control(P, 1));
+		//once(P);
+	});
+	
 
 });

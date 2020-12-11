@@ -214,66 +214,42 @@ $$\sin\alpha = \frac{b_{21} - h_y b_{11}}{b_{11}^2 + b_{21}^2}$$
 
 \subsection{Обобщение}
 
-\paragraph{XYR}
+$$\begin{cases}
+	d = b_{22}, & \pos(X) < \pos(Y); \\
+	d = b_{11}, & \pos(X) > \pos(Y). \\
+\end{cases}$$
 
-$$c = b_{21};\; d = b_{22};\; d' = b_{11}.$$
+$$\begin{cases}
+	d' = b_{11}, & \pos(X) < \pos(Y); \\
+	d' = b_{22}, & \pos(X) > \pos(Y). \\
+\end{cases}$$
 
-$$q = c^2 + d^2;$$
-
-$$q = h^2 + 1;$$
-
-$$s = \frac{h d - c}{q};$$
-$$\cos\alpha =  \frac{h c + d}{q};$$
-$$\sin\alpha = -s;$$
-
-$$h_y = h.$$
-
-\[{h_x}=\frac{d' - \cos\alpha}{h \cos\alpha - s}\]
-
-\paragraph{YXR}
-
-$$c = b_{12};\; d = b_{11};\; d' = b_{22}.$$
+$$\begin{cases}
+	c = b_{21}, & \pos(Y) = 2; \\
+	c = b_{12}, & \pos(X) = 2. \\
+\end{cases}$$
 
 $$q = c^2 + d^2;$$
 
-$$q = h^2 + 1;$$
+Условие разложимости: $q > 1$.
 
-$$s = \frac{h d - c}{q};$$
-$$\cos\alpha = \frac{h c + d}{q}$$
-$$\sin\alpha = s$$
+$$h = \pm \sqrt{q - 1};$$
 
-$$h_x = h.$$
-
-\[{h_y}=\frac{d' - \cos\alpha}{h \cos\alpha - s}\]
-
-\paragraph{RXY}
-
-$$c = b_{12};\; d = b_{22};\; d' = b_{11}.$$
-
-$$q = c^2 + d^2;$$
-
-$$q = h^2 + 1;$$
-
-$$s = \frac{h d - c}{q};$$
 $$\cos\alpha = \frac{h c + d}{q};$$
-$$\sin\alpha = s;$$
 
-$$h_x = h.$$
+$$\sin\alpha' = \frac{h d - c}{q};$$
 
-\[{h_y}=\frac{d'-\cos\alpha}{h \cos\alpha - s}\]
+$$h' = \frac{d' - \cos\alpha}{h \cos\alpha - \sin\alpha'}.$$
 
-\paragraph{RYX}
-
-$$c = b_{21};\; d = b_{11};\; d' = b_{22}.$$
-
-$$q = c^2 + d^2;$$
-
-$$q = h^2 + 1;$$
-
-$$s = \frac{h d - c}{q};$$
-$$\cos\alpha =  \frac{h c + d}{q};$$
-$$\sin\alpha = -s;$$
-
-$$h_y = h.$$
-
-\[{h_x}=\frac{d'-\cos\alpha}{h \cos\alpha - s}\]
+$$\begin{cases}
+	\begin{cases}
+		\sin\alpha = -\sin\alpha',\\
+		h_y = h,\\
+		h_x = h',\\
+	\end{cases} & \pos(Y) = 2; \\
+	\begin{cases}
+		\sin\alpha = \sin\alpha',\\
+		h_y = h',\\
+		h_x = h,\\
+	\end{cases} & \pos(X) = 2. \\
+\end{cases}$$

@@ -47,198 +47,258 @@ function decompose(A, P, V=0){
 	const pos = (L)=>(P.indexOf(L)+1);
 	
 	let h_x, h_y, s_x, s_y, sina, cosa;
-
-	const D = A[0][0]*A[1][1] - A[0][1]*A[1][0];
 	
-	if(pos("R")===0){
-		//console.log('R=0');
-		//Первая группа разложений
-		if(pos("X") < pos("Y")){
-			s_y = A[1][1];
-			s_x = D/s_y;
-		}
-		else if(pos("Y") < pos("X")){
-			s_x = A[0][0];
-			s_y = D/s_x;
-		}
-		else{
-			throw new Error();
-		}
-		
-		if(pos("X") < pos("S")){
-			h_x = A[0][1]/s_y;//X<S
-		}
-		else if(pos("S") < pos("X")){
-			h_x = A[0][1]/s_x; //S<X
-		}
-		else{
-			throw new Error();
-		}
-		
-		if(pos("Y") < pos("S")){
-			h_y = A[1][0]/s_x; //Y<S
-		}
-		else if(pos("S") < pos("Y")){
-			h_y = A[1][0]/s_y; //S<Y
-		}
-		else{
-			throw new Error();
-		}
-		
-	}
-	else if(pos("R")!==2){
-		//Вторая группа разложений, допускает два решения
-		let sigx = (V & 1) ? -1 : 1;
-		let sigy = sign(D)*sigx;
-		
-		const trig = (a, b, sign)=>{
-			let s = sign * sqrt(a**2 + b**2);
+	const [[a11, a12], [a21, a22]] = A;
+
+	const D = A[0][0]*a22 - a12*a21;
+	
+	if(pos("S")>0){
+		if(pos("R")===0){
+			//console.log('R=0');
+			//Первая группа разложений
+			if(pos("X") < pos("Y")){
+				s_y = a22;
+				s_x = D/s_y;
+			}
+			else if(pos("Y") < pos("X")){
+				s_x = a11;
+				s_y = D/s_x;
+			}
+			else{
+				throw new Error();
+			}
 			
-			return [s, D/s, a/s, b/s, D/s * b/s];
-		};
-		
-		let dh, b, axis;
-		
-		if(pos("X") > 0){
-			b = A[1][0];
-		}
-		else if(pos("Y") > 0){
-			b = -A[0][1];
-		}
-		else{
-			throw new Error();
-		}
-		
-		if(pos("R") < pos("X") || pos("Y") > 0 && pos("R") === 3 ){
-			//pos("X") > 0 && pos("R") < pos("X") || pos("Y") > 0 && pos("R") > pos("Y")
-			[s_x, s_y, cosa, sina, dh] = trig(A[0][0], b, sigx);
-		}
-		else if(pos("R") < pos("Y") || pos("X") > 0 && pos("R") === 3){
-			//pos("X") > 0 && pos("R") > pos("Y") || pos("Y") > 0 && pos("R") < pos("Y")
-			[s_y, s_x, cosa, sina, dh] = trig(A[1][1], b, sigy);
-		}
-		else{
-			throw new Error();
-		}
-
-		if(pos("X")){
-			let hbase = (A[0][1] + dh)/cosa;
-
-			if(pos("S")<pos("X")){
-				//S < X
-				h_x = hbase/s_x;
+			if(pos("X") < pos("S")){
+				h_x = a12/s_y;//X<S
 			}
-			else if(pos("X")<pos("S")){
-				//X < S
-				h_x = hbase/s_y;
+			else if(pos("S") < pos("X")){
+				h_x = a12/s_x; //S<X
 			}
-		}
-		else if(pos("Y")){
-			let hbase = (A[1][0] - dh)/cosa;
+			else{
+				throw new Error();
+			}
 			
-			if(pos("S") < pos("Y")){
-				//S < Y
-				h_y = hbase/s_y;
+			if(pos("Y") < pos("S")){
+				h_y = a21/s_x; //Y<S
 			}
-			else if(pos("Y") < pos("S")){
-				//Y < S
-				h_y = hbase/s_x;
+			else if(pos("S") < pos("Y")){
+				h_y = a21/s_y; //S<Y
 			}
-		}
-		else{
-			throw new Error();
-		}
-	}
-	else if(pos("R")===2){
-		let T;
-		
-		let p, q;
-		
-		if(pos("X")>0){
-			p = A[1][0];
-		}
-		else if(pos("Y")>0){
-			p = -A[0][1];
-		}
-		
-		if(pos("X") === 3 || pos("Y") === 1){
-			q = A[0][0];
-		}
-		else if(pos("X") === 1 || pos("Y") === 3){
-			q = A[1][1];
-		}
-		
-		T = p*q/D;
-
-		if(T===0){
-			//4 варианта
-			if(V===0){
-				sina = 0;
-				cosa = 1;
+			else{
+				throw new Error();
 			}
-			else if(V===1){
-				sina = 1;
-				cosa = 0;
+			
+		}
+		else if(pos("R")!==2){
+			//Вторая группа разложений, допускает два решения
+			let sigx = (V & 1) ? -1 : 1;
+			let sigy = sign(D)*sigx;
+			
+			const trig = (a, b, sign)=>{
+				let s = sign * sqrt(a**2 + b**2);
+				
+				return [s, D/s, a/s, b/s, D/s * b/s];
+			};
+			
+			let dh, b, axis;
+			
+			if(pos("X") > 0){
+				b = a21;
 			}
-			else if(V===2){
-				sina = 0;
-				cosa = -1;
+			else if(pos("Y") > 0){
+				b = -a12;
 			}
-			else if(V===3){
-				sina = -1;
-				cosa = 0;
+			else{
+				throw new Error();
 			}
-		}
-		else{
-			let sig2 = ((V & 1) ? -1 : 1)*sign(T);
-			let sig1 = ((V & 2) ? -1 : 1)*sign(T);
-			let cos2a = sig2 * sqrt(1 - 4*(T**2)); // pm
-			cosa = sig1 * sqrt(0.5 + cos2a/2); // pm
+			
+			if(pos("R") < pos("X") || pos("Y") > 0 && pos("R") === 3 ){
+				//pos("X") > 0 && pos("R") < pos("X") || pos("Y") > 0 && pos("R") > pos("Y")
+				[s_x, s_y, cosa, sina, dh] = trig(a11, b, sigx);
+			}
+			else if(pos("R") < pos("Y") || pos("X") > 0 && pos("R") === 3){
+				//pos("X") > 0 && pos("R") > pos("Y") || pos("Y") > 0 && pos("R") < pos("Y")
+				[s_y, s_x, cosa, sina, dh] = trig(a22, b, sigy);
+			}
+			else{
+				throw new Error();
+			}
 
-			sina = T/cosa;
-		}
+			if(pos("X")){
+				let hbase = (a12 + dh)/cosa;
 
-		let hbase, dh, nh;
-		
-
-		if(pos("X")===3 || pos("Y") === 1){
-			s_x = A[0][0]/cosa;
-			s_y = D/s_x;
-			dh = s_x*sina;
-			nh = A[0][0];
-
-		}
-		else if(pos("Y")===3 || pos("X") === 1){
-			s_y = A[1][1]/cosa;
-			s_x = D/s_y;
-			dh = s_y*sina;
-			nh = A[1][1];
-		}
-		else{
-			throw new Error();
-		}
-		
-		if(pos("X")>0){
-			h_x = (A[0][1] + dh)/nh;
-		}
-		
-		if(pos("Y")>0){
-			h_y = (A[1][0] - dh)/nh;
-		}
-
-
-	}
-	else if(pos("S")===0){
-		let s = Math.sqrt(D); //pm
-		if(pos("R")!==2){
-			throw new Error();
+				if(pos("S")<pos("X")){
+					//S < X
+					h_x = hbase/s_x;
+				}
+				else if(pos("X")<pos("S")){
+					//X < S
+					h_x = hbase/s_y;
+				}
+			}
+			else if(pos("Y")){
+				let hbase = (a21 - dh)/cosa;
+				
+				if(pos("S") < pos("Y")){
+					//S < Y
+					h_y = hbase/s_y;
+				}
+				else if(pos("Y") < pos("S")){
+					//Y < S
+					h_y = hbase/s_x;
+				}
+			}
+			else{
+				throw new Error();
+			}
 		}
 		else if(pos("R")===2){
-			throw new Error();
+			let T;
+			
+			let p, q;
+			
+			if(pos("X")>0){
+				p = a21;
+			}
+			else if(pos("Y")>0){
+				p = -a12;
+			}
+			
+			if(pos("X") === 3 || pos("Y") === 1){
+				q = a11;
+			}
+			else if(pos("X") === 1 || pos("Y") === 3){
+				q = a22;
+			}
+			
+			T = p*q/D;
+
+			if(T===0){
+				//4 варианта
+				if(V===0){
+					sina = 0;
+					cosa = 1;
+				}
+				else if(V===1){
+					sina = 1;
+					cosa = 0;
+				}
+				else if(V===2){
+					sina = 0;
+					cosa = -1;
+				}
+				else if(V===3){
+					sina = -1;
+					cosa = 0;
+				}
+			}
+			else{
+				let sig2 = ((V & 1) ? -1 : 1)*sign(T);
+				let sig1 = ((V & 2) ? -1 : 1)*sign(T);
+				let cos2a = sig2 * sqrt(1 - 4*(T**2)); // pm
+				cosa = sig1 * sqrt(0.5 + cos2a/2); // pm
+
+				sina = T/cosa;
+			}
+
+			let hbase, dh, nh;
+			
+
+			if(pos("X")===3 || pos("Y") === 1){
+				s_x = a11/cosa;
+				s_y = D/s_x;
+				dh = s_x*sina;
+				nh = a11;
+
+			}
+			else if(pos("Y")===3 || pos("X") === 1){
+				s_y = a22/cosa;
+				s_x = D/s_y;
+				dh = s_y*sina;
+				nh = a22;
+			}
+			else{
+				throw new Error();
+			}
+			
+			if(pos("X")>0){
+				h_x = (a12 + dh)/nh;
+			}
+			
+			if(pos("Y")>0){
+				h_y = (a21 - dh)/nh;
+			}
+
 		}
 		else{
 			throw new Error();
 		}
+	}
+	else if(pos("S")===0){
+		let s = Math.sqrt(Math.abs(D)); //pm
+		
+		const [b11, b12, b21, b22] = [a11, a12, a21, a22].map(a=>(a/s));
+		
+		if(pos("R")!==2){
+			const sigh = (V & 1) ? -1 : 1;
+			const calc = (c, d, d1)=>{
+				let q = c**2 + d**2;
+				let h = sigh * Math.sqrt(q - 1);
+				let si = (h*d - c)/q;
+				let cosa = (h*c + d)/q;
+				let h1 = (d1 - cosa)/(h*cosa - si);
+				
+				return [cosa, si, h, h1];
+			}
+			
+			let c, d, d1;
+			if(pos("X")<pos("Y")){
+				d = b22; d1 = b11;
+			}
+			else if(pos("Y")<pos("X")){
+				d = b11; d1 = b22;
+			}
+
+			if(pos("Y")===2){
+				c = b21;
+				
+				let si;
+				
+				[cosa, si, h_y, h_x] = calc(c, d, d1);
+				
+				sina = -si;
+				
+			}			
+			else if(pos("X")===2){
+				c = b12;
+				
+				let si;
+				
+				[cosa, si, h_x, h_y] = calc(c, d, d1);
+				
+				sina = si;
+				
+			}
+		}
+		else if(pos("R")===2){
+			const signs = (V & 1) ? -1 : 1;
+			if(pos("X")<pos("Y")){
+				cosa = b22;
+			}
+			else if(pos("Y")<pos("X")){
+				cosa = b11;
+			}
+			sina = Math.sqrt(1-cosa**2);
+			h_x = (b12 + sina)/cosa;
+			h_y = (b21 - sina)/cosa;
+		}
+		else{
+			throw new Error();
+		}
+		
+		s_x = s; s_y = s;
+		
+		//P = 'S' + P;
 	}
 	else{
 		throw new Error();

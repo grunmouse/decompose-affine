@@ -46,11 +46,15 @@ $$h_y = \frac{b_{21} - \sin\alpha}{\cos\alpha}.$$
 \subsection{Обобщение}
 
 $$\begin{cases}
-	\cos\alpha = b_{11}, & \pos(Y) = 0;\\
-	\cos\alpha = b_{22}, & \pos(X) = 0.
+	c = b_{11}, & \pos(Y) = 1;\\
+	c = b_{22}, & \pos(X) = 1.
 \end{cases}$$
 
-$$\sin\alpha = \sqrt{1- (\cos\alpha)^2}.$$
+Условие разложимости: $-1 \le c \le 1 \wedge c \ne 0$.
+Частный случай $c = 0$ даёт неоднозначность разложения для $h_x$ и $h_y$.
+
+$$\cos\alpha = c;$$
+$$\sin\alpha = \pm \sqrt{1 - c^2}.$$
 
 $$h_x = \frac{b_{12} + \sin\alpha}{\cos\alpha}.$$
 $$h_y = \frac{b_{21} - \sin\alpha}{\cos\alpha}.$$

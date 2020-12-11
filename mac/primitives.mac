@@ -1,7 +1,7 @@
 R:affineR(sin(a),cos(a));
 S:affineS(s_x,s_y);
-Y:affineY(h_y);
 X:affineX(h_x);
+Y:affineY(h_y);
 
 R_1:affineR(sin(a_1),cos(a_1));
 R_2:affineR(sin(a_2),cos(a_2));
