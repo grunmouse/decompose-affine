@@ -1,0 +1,57 @@
+
+\subsection{Содержащие $S_x$ и $S_y$}
+
+Матрицы $S_x$ и $S_y$ вместе вносят два параметра. Значит их нужно дополнить ещё двумя матрицами, вносящими по одному параметру.
+Случай, когда $S_x$ и $S_y$ идут подряд рассматриваем отдельно.
+Матрица $D$ не может стоять между $S_x$ и $S_y$, т.к. это породило бы неразложимую диагональную матрицу.
+Матрицы $X$ и $Y$ не могут входить дважды, т.к. это породило бы неразложимую треугольную матрицу.
+Матрица $D$ не может входить одновременно с $X$ или $Y$, т.к. это породило бы неразложимую треугольную матрицу.
+Случай, когда рядом с $S_x$ или $S_y$ стоит $D$ рассматриваем отдельно.
+
+\begin{enumerate}
+	\item $X$ и $Y$:
+	\begin{itemize}
+		\item $S_x X S_y Y$
+		\item $S_x Y S_y X$
+		\item $S_y X S_x Y$
+		\item $S_y Y S_x X$
+		\item $X S_y Y S_x$ 
+		\item $Y S_y X S_x$ 
+		\item $X S_x Y S_y$ 
+		\item $Y S_x X S_y$
+	\end{itemize}
+	\item $R$ и $X$ или $Y$:
+	\begin{enumerate}
+		\item С $R$ с краю:
+		\begin{itemize}
+			\item $R S_x X S_y$
+			\item $R S_x Y S_y$
+			\item $R S_y X S_x$
+			\item $R S_y Y S_x$
+			\item $S_x X S_y R$ 
+			\item $S_x Y S_y R$ 
+			\item $S_y X S_x R$ 
+			\item $S_y Y S_x R$
+		\end{itemize}
+		\item С $R$ внутри:
+		\begin{itemize}
+			\item $S_x R S_y X$
+			\item $S_x R S_y Y$
+			\item $S_y R S_x X$
+			\item $S_y R S_x Y$
+			\item $X S_x R S_y$
+			\item $Y S_x R S_y$
+			\item $X S_y R S_x$
+			\item $Y S_y R S_x$
+		\end{itemize}
+	\end{enumerate}
+	\item Два $R$:
+	\begin{itemize}
+			\item $R_1 S_x R_2 S_y$
+			\item $R_1 S_y R_2 S_x$
+			\item $S_y R_1 S_x R_2$
+			\item $S_x R_1 S_y R_2$
+	\end{itemize}
+	\item $R$ и $D$ - $D$ неизбежно соседствует с $S_x$ или $S_y$, а значит обрабатывается сведением к $S$.
+	\item $S_x$ и $S_y$ идут подряд - обрабатывается сведением к $S$
+\end{enumerate}

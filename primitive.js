@@ -32,9 +32,18 @@ function affineS(s_x, s_y){
 	];
 }
 
+const rotate = affineR;
+const scale = affineS;
+const skewX = affineX;
+const skewY = affineY;
+
 module.exports = {
 	affineR,
 	affineX,
 	affineY,
-	affineS
+	affineS,
+	rotate,
+	scale,
+	skewX, 	
+	skewY
 };

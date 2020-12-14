@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "jsverify": "^0.8.4"
+  },
+  "dependencies": {
+    "double.js": "^1.0.14"
   }
 }

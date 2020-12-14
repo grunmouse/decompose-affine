@@ -17,6 +17,7 @@ const  {
 	affineS
 } = require('./primitive.js');
 
+const assert = require('assert');
 
 
 /**
@@ -37,6 +38,31 @@ function factory(type, {h_x, h_y, s_x, s_y, sina, cosa}){
 	}
 }
 
+function sincos(a, b, sign=1){
+	const s = sign * Math.hypot(a, b);
+	
+	return [s, a/s, b/s];
+}
+
+/**
+ * @param P - строка
+ * @param L - искомый символ
+ * @param n - номер вхождения
+ */
+function posOf(P, L, n=1){
+	var index = 0;
+	for(let i=0; i<n; ++i){
+		index = P.indexOf(L, index) + 1;
+		if(index === 0){
+			return 0;
+		}
+	}
+	return index;
+}
+
+function countOf(P, L){
+	return P.split(L).lenght - 1;
+}
 
 /**
  * @param A : Array[1]<Array[1]<Number>> - матрица
@@ -44,13 +70,17 @@ function factory(type, {h_x, h_y, s_x, s_y, sina, cosa}){
  * @param V : Uint[0..3] - номер варианта
  */
 function decompose(A, P, V=0){
-	const pos = (L)=>(P.indexOf(L)+1);
+	const pos = (L, i=1)=>(posOf(P, L, i));
+	const count = (L)=>(countOf(P, L));
+	
+	const result = [];
 	
 	let h_x, h_y, s_x, s_y, sina, cosa;
 	
 	const [[a11, a12], [a21, a22]] = A;
 
-	const D = A[0][0]*a22 - a12*a21;
+	const D = a11*a22 - a12*a21;
+	
 	
 	if(pos("S")>0){
 		if(pos("R")===0){
@@ -68,6 +98,8 @@ function decompose(A, P, V=0){
 				throw new Error();
 			}
 			
+			result[pos('S')] = affineS(s_x,s_y);
+			
 			if(pos("X") < pos("S")){
 				h_x = a12/s_y;//X<S
 			}
@@ -77,6 +109,7 @@ function decompose(A, P, V=0){
 			else{
 				throw new Error();
 			}
+			result[pos('X')] = affineX(h_x);
 			
 			if(pos("Y") < pos("S")){
 				h_y = a21/s_x; //Y<S
@@ -87,6 +120,7 @@ function decompose(A, P, V=0){
 			else{
 				throw new Error();
 			}
+			result[pos('Y')] = affineY(h_y);
 			
 		}
 		else if(pos("R")!==2){
@@ -95,9 +129,10 @@ function decompose(A, P, V=0){
 			let sigy = sign(D)*sigx;
 			
 			const trig = (a, b, sign)=>{
-				let s = sign * sqrt(a**2 + b**2);
+				//let s = sign * sqrt(a**2 + b**2);
+				let [s, p, q] = sincos(a, b, sign);
 				
-				return [s, D/s, a/s, b/s, D/s * b/s];
+				return [s, D/s, p, q, D/s * q];
 			};
 			
 			let dh, b, axis;
@@ -123,6 +158,10 @@ function decompose(A, P, V=0){
 			else{
 				throw new Error();
 			}
+			
+			result[pos('S')] = affineS(s_x, s_y);
+			result[pos('R')] = affineR(sina, cosa);
+			
 
 			if(pos("X")){
 				let hbase = (a12 + dh)/cosa;
@@ -135,6 +174,8 @@ function decompose(A, P, V=0){
 					//X < S
 					h_x = hbase/s_y;
 				}
+				
+				result[pos('X')] = affineX(h_x);
 			}
 			else if(pos("Y")){
 				let hbase = (a21 - dh)/cosa;
@@ -147,6 +188,7 @@ function decompose(A, P, V=0){
 					//Y < S
 					h_y = hbase/s_x;
 				}
+				result[pos('Y')] = affineY(h_y);
 			}
 			else{
 				throw new Error();
@@ -203,6 +245,7 @@ function decompose(A, P, V=0){
 
 			let hbase, dh, nh;
 			
+			result[pos('R')] = affineR(sina, cosa);
 
 			if(pos("X")===3 || pos("Y") === 1){
 				s_x = a11/cosa;
@@ -221,12 +264,16 @@ function decompose(A, P, V=0){
 				throw new Error();
 			}
 			
+			result[pos('S')] = affineS(s_x, s_y);
+			
 			if(pos("X")>0){
 				h_x = (a12 + dh)/nh;
+				result[pos('X')] = affineX(h_x);
 			}
 			
 			if(pos("Y")>0){
 				h_y = (a21 - dh)/nh;
+				result[pos('Y')] = affineY(h_y);
 			}
 
 		}
@@ -279,6 +326,11 @@ function decompose(A, P, V=0){
 				sina = si;
 				
 			}
+			
+			result[pos('X')] = affineX(h_x);
+			result[pos('Y')] = affineY(h_y);
+			result[pos('R')] = affineR(sina, cosa);
+			
 		}
 		else if(pos("R")===2){
 			const signs = (V & 1) ? -1 : 1;
@@ -291,6 +343,10 @@ function decompose(A, P, V=0){
 			sina = Math.sqrt(1-cosa**2);
 			h_x = (b12 + sina)/cosa;
 			h_y = (b21 - sina)/cosa;
+
+			result[pos('X')] = affineX(h_x);
+			result[pos('Y')] = affineY(h_y);
+			result[pos('R')] = affineR(sina, cosa);
 		}
 		else{
 			throw new Error();
@@ -298,15 +354,25 @@ function decompose(A, P, V=0){
 		
 		s_x = s; s_y = s;
 		
+		result.push(affineS(s,s));
 		//P = 'S' + P;
 	}
 	else{
 		throw new Error();
 	}
 	
-	let param = {h_x, h_y, s_x, s_y, sina, cosa};
+	//let param = {h_x, h_y, s_x, s_y, sina, cosa};
 	
-	return P.split("").map((L)=>factory(L, param));
+	result.shift();
+	
+	//return result;
+	//let oldResult = P.split("").map((L)=>factory(L, param));
+
+	//assert.deepEqual(result, oldResult);
+	
+	//console.log(P, oldResult, result);
+	
+	return result;
 }
 
 module.exports = decompose;

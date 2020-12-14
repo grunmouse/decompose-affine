@@ -101,6 +101,8 @@ function manual(P, V, M){
 	});
 }
 
+const byOnce = false;
+
 describe('decompose', ()=>{
 	
 	it('exists', ()=>{
@@ -124,7 +126,12 @@ describe('decompose', ()=>{
 		'SYX',
 		'YSX'
 	].forEach((P)=>{
-		jsc.property(P, matrix(), control(P));
+		if(byOnce){
+			once(P);
+		}
+		else{
+			jsc.property(P, matrix(), control(P));
+		}
 	});
 	
 	//Вторая группа
@@ -138,8 +145,13 @@ describe('decompose', ()=>{
 		'XSR',
 		'YSR'
 	].forEach((P)=>{
-		jsc.property(P, matrix(), control(P));
-		jsc.property(P +' 1', matrix(), control(P, 1));
+		if(byOnce){
+			once(P);
+		}
+		else{
+			jsc.property(P, matrix(), control(P));
+			jsc.property(P +' 1', matrix(), control(P, 1));
+		}
 	});
 
 	//Третья группа
@@ -149,10 +161,15 @@ describe('decompose', ()=>{
 		'XRS',
 		'YRS'
 	].forEach((P)=>{
-		jsc.property(P, matrix(P), control(P, 0));
-		jsc.property(P +' 1', matrix(P), control(P, 1));
-		jsc.property(P +' 2', matrix(P), control(P, 2));
-		jsc.property(P +' 3', matrix(P), control(P, 3));
+		if(byOnce){
+			once(P);
+		}
+		else{
+			jsc.property(P, matrix(P), control(P, 0));
+			jsc.property(P +' 1', matrix(P), control(P, 1));
+			jsc.property(P +' 2', matrix(P), control(P, 2));
+			jsc.property(P +' 3', matrix(P), control(P, 3));
+		}
 	});
 
 	//Четвёртая группа
@@ -162,9 +179,13 @@ describe('decompose', ()=>{
 		'RXY',
 		'RYX'
 	].forEach((P)=>{
-		jsc.property(P, matrix(P), control(P));
-		jsc.property(P + ' 1', matrix(P), control(P, 1));
-		//once(P);
+		if(byOnce){
+			once(P);
+		}
+		else{
+			jsc.property(P, matrix(P), control(P));
+			jsc.property(P + ' 1', matrix(P), control(P, 1));
+		}
 	});
 	
 	//Пятая группа
@@ -172,9 +193,13 @@ describe('decompose', ()=>{
 		'XRY',
 		'YRX'
 	].forEach((P)=>{
-		jsc.property(P, matrix(P), control(P));
-		jsc.property(P + ' 1', matrix(P), control(P, 1));
-		//once(P);
+		if(byOnce){
+			once(P);
+		}
+		else{
+			jsc.property(P, matrix(P), control(P));
+			jsc.property(P + ' 1', matrix(P), control(P, 1));
+		}
 	});
 	
 

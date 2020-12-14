@@ -9,67 +9,185 @@
 Таким образом, все виды разложений мы можем разделить на содержащие $S$ и содержащие $s$, с частным случаем $s = 1$.
 В первом случае разложение должно содержать две немасштабирующие матрицы, во втором - три.
 
- 
+Классификация по разложению детерминанта:
+\begin{enumerate}
+\item Весь детерминант внесён матрицей $S$.
+\item Модуль детерминанта внесён скаляром $s$, а знак - включением матрицы $M$.
+\item Детерминант внесён парой матриц $S_x$, $S_y$.
+\item Детерминант внесён частично матрицей $S$, а частично матрицей $S_x$ или $S_y$.
+\item Весь детерминант внесён матрицей $S_x$ или $S_y$.
+\end{enumerate}
 
-\subsection{Разложения без повторов}
 
-\paragraph{Содержащие $S$}
+\subsection{Содержащие $S$}
 
-\begin{tabular}{|c|c|c|}
-\hline
-X,Y & X,R & Y,R \\
-\hline
-	SXY & SXR & SYR \\
-	SYX & XSR & YSR \\
-	YXS & RSX & RSY \\
-	XYS & RXS & RYS \\
-	XSY & SRX & SRY \\
-	YSX & XRS & YRS \\
-\hline
-\end{tabular}
+Матрица $S$ содержит два параметра, значит матрицами с единичным детерминантом должны быть внесены ещё два.
+Однотипные матрицы не могут следовать друг за другом.
+Матрица $D$ считается однотипной с $S$, т.к. их произведение даёт неразложимую диагональную матрицу.
+Матрицы $X$ и $Y$ не могут входить дважды, т.к. это породило бы неразложимую треугольную матрицу.
+Матрица $D$ не может входить одновременно с $X$ или $Y$, т.к. это породило бы неразложимую треугольную матрицу
 
-\paragraph{Содержащие $s$}
+\begin{enumerate}
+	\item $X$ и $Y$:
+	\begin{enumerate}
+		\item C $S$ с краю:
+		\begin{itemize}
+			\item $SXY$
+			\item $SYX$
+			\item $YXS$
+			\item $XYS$
+		\end{itemize}
+		\item С $S$ посередине:
+		\begin{itemize}
+			\item $XSY$
+			\item $YSX$
+		\end{itemize}
+	\end{enumerate}
+	\item $R$ и $X$ или $Y$:
+	\begin{enumerate}
+		\item С $R$ с краю:
+		\begin{itemize}
+			\item $RSX$
+			\item $RSY$
+			\item $RXS$
+			\item $RYS$
+			\item $SXR$
+			\item $SYR$
+			\item $XSR$
+			\item $YSR$
+		\end{itemize}
+		\item С $R$ посередине:
+		\begin{itemize}
+			\item $SRX$
+			\item $SRY$
+			\item $XRS$
+			\item $YRS$
+		\end{itemize}
+	\end{enumerate}
+	\item $R$ и $D$:
+	\begin{itemize}
+			\item $SRD$
+			\item $DRS$
+	\end{itemize}
+	\item Два $R$:
+	\begin{itemize}
+			\item $R_1SR_2$
+	\end{itemize}
+\end{enumerate}
 
-\begin{tabular}{|c|}
-\hline
-Разложение \\
-\hline
- sXYR \\
- sYXR \\
- sRXY \\
- sRYX \\
- sXRY \\
- sYRX \\
-\hline
-\end{tabular}
+\subsection{Содержащие $s$}
 
-\subsection{Разложения с повторами}
+Скаляр $s$ вносит один параметр, значит матрицы с единичным детерминантом должны внести три.
+Скаляр коммутирует с любой матрицей, поэтому его позиция в схеме роли не играет.
+Позицию матрицы $M$ будем рассматривать отдельно.
+Однотипные матрицы не могут следовать друг за другом.
 
-Под повтором будем понимать участие в разложении двух матриц одного типа.
-$S$ не может участвовать дважды, так как содержит две переменных, но мы можем ввести дополнительную матрицу
-$$D = \begin{pmatrix}
-	d & 0\\
-	0 & \frac{1}{d}
-\end{pmatrix}$$
-$$\det D = 1.$$
+\begin{enumerate}
+	\item $X$ и $Y$, с двойным вхождением одной из них:
+	\begin{itemize}
+		\item $X_1YX_2$
+		\item $Y_1XY_2$
+	\end{itemize}
+	\item $R$ и двойное вхождение $X$ или $Y$:
+	\begin{itemize}
+		\item $X_1RX_2$
+		\item $Y_1RY_2$
+	\end{itemize}
+	\item $R$, $X$ и $Y$:
+	\begin{enumerate}
+		\item $R$ скраю
+		\begin{itemize}
+			\item $RXY$
+			\item $RYX$
+			\item $XYR$
+			\item $YXR$
+		\end{itemize}
+		\item $R$ посередине
+		\begin{itemize}
+			\item $XRY$
+			\item $YRX$
+		\end{itemize}
+	\end{enumerate}
+	\item двойное вхождение $R$ и $X$ или $Y$:
+	\begin{itemize}
+		\item $R_1XR_2$
+		\item $R_1YR_2$
+	\end{itemize}
+	\item содержащие $D$ - обрабатываются сведением к содержащим $S$
+\end{enumerate}
 
-Матрица $D$ - частный случай матрицы $S$, поэтому будем считать эти две матрицы однотипными.
-Произведение $D$ на скаляр $s$ - тоже является частным случаем $S$, поэтому не будем использовать $D$ в разложениях, содержащих $s$.
+\subsubsection{Обработка включения $M$}
 
-\paragraph{Содержащие $S$}
+Если $\det A > 0$, то $M$ входит в нулевой степени, и резложение сводится к схеме без неё.
 
-\begin{tabular}{|c|c|c|}
-\hline
-$R_1SR_2$ & $SRD$ & $DRS$ \\
-\hline
-\end{tabular}
+Если $\det A < 0$, схему можно свести к схеме без $M$ умножением на $M$ слева или справа по следующим правилам:
 
-\paragraph{Содержащие $s$}
+$$A = MT_1T_2T_3 \Rightarrow A' = MA = T_1T_2T_3.$$
+$$A = T_1MT_2T_3 \Rightarrow A' = MA = T_1'T_2T_3.$$
+$$A = T_1T_2MT_3 \Rightarrow A' = AM = T_1T_2T_3'.$$
+$$A = T_1T_2T_3M \Rightarrow A' = AM = T_1T_2T_3.$$
 
-\begin{tabular}{|c|c|}
-\hline
-$sX_1YX_2$ & $sY_1XY_2$ \\
-$sX_1RX_2$ & $sR_1XR_2$ \\
-$sY_1RY_2$ & $sR_1YR_2$ \\
-\hline
-\end{tabular}
+$T_1$,$T_2$,$T_3$ - некоторые матрицы с единичным определителем.
+
+После разложения $А'$ по полученной схеме, матрицу $T_i'$ нужно преобразовать в матрицу $T_i$, воспользовавшись свойствами произведения $M$ на другие матрицы.
+
+\subsubsection{Группа разложений, содержащих $D$}
+
+Т.к. $D$ - это частный случай $S$, то после обработки включения $M$, в полученной схеме нужно заменить одну из $D$ на $S$ и найти соответствующее разложение. Так как у разлагаемой матрицы детерминант - единичный, найденная матрица $S$ равна искомой $D$.
+
+\subsection{Содержащие $S_x$ и $S_y$}
+
+Матрицы $S_x$ и $S_y$ вместе вносят два параметра. Значит их нужно дополнить ещё двумя матрицами, вносящими по одному параметру.
+Случай, когда $S_x$ и $S_y$ идут подряд рассматриваем отдельно.
+Матрица $D$ не может стоять между $S_x$ и $S_y$, т.к. это породило бы неразложимую диагональную матрицу.
+Матрицы $X$ и $Y$ не могут входить дважды, т.к. это породило бы неразложимую треугольную матрицу.
+Матрица $D$ не может входить одновременно с $X$ или $Y$, т.к. это породило бы неразложимую треугольную матрицу.
+Случай, когда рядом с $S_x$ или $S_y$ стоит $D$ рассматриваем отдельно.
+
+\begin{enumerate}
+	\item $X$ и $Y$:
+	\begin{itemize}
+		\item $S_x X S_y Y$
+		\item $S_x Y S_y X$
+		\item $S_y X S_x Y$
+		\item $S_y Y S_x X$
+		\item $X S_y Y S_x$ 
+		\item $Y S_y X S_x$ 
+		\item $X S_x Y S_y$ 
+		\item $Y S_x X S_y$
+	\end{itemize}
+	\item $R$ и $X$ или $Y$:
+	\begin{enumerate}
+		\item С $R$ с краю:
+		\begin{itemize}
+			\item $R S_x X S_y$
+			\item $R S_x Y S_y$
+			\item $R S_y X S_x$
+			\item $R S_y Y S_x$
+			\item $S_x X S_y R$ 
+			\item $S_x Y S_y R$ 
+			\item $S_y X S_x R$ 
+			\item $S_y Y S_x R$
+		\end{itemize}
+		\item С $R$ внутри:
+		\begin{itemize}
+			\item $S_x R S_y X$
+			\item $S_x R S_y Y$
+			\item $S_y R S_x X$
+			\item $S_y R S_x Y$
+			\item $X S_x R S_y$
+			\item $Y S_x R S_y$
+			\item $X S_y R S_x$
+			\item $Y S_y R S_x$
+		\end{itemize}
+	\end{enumerate}
+	\item Два $R$:
+	\begin{itemize}
+			\item $R_1 S_x R_2 S_y$
+			\item $R_1 S_y R_2 S_x$
+			\item $S_y R_1 S_x R_2$
+			\item $S_x R_1 S_y R_2$
+	\end{itemize}
+	\item $R$ и $D$ - $D$ неизбежно соседствует с $S_x$ или $S_y$, а значит обрабатывается сведением к $S$.
+	\item $S_x$ и $S_y$ идут подряд - обрабатывается сведением к $S$
+\end{enumerate}

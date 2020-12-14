@@ -1,7 +1,13 @@
+dependencies:
+  double.js: 1.0.14
 devDependencies:
   jsverify: 0.8.4
 lockfileVersion: 5.1
 packages:
+  /double.js/1.0.14:
+    dev: false
+    resolution:
+      integrity: sha512-Bpx4dxqUlcoUop+h4ywPsw2CSVMy5rYzZnmLggFo3HTzLH77JwCzUMl4TgBIhByKuz4xCx1coOq657H0tj8r8g==
   /jsverify/0.8.4:
     dependencies:
       lazy-seq: 1.0.0
@@ -36,4 +42,5 @@ packages:
     resolution:
       integrity: sha1-rHO/pfJTQ0aOLQ8zRsYRe8A9PJk=
 specifiers:
+  double.js: ^1.0.14
   jsverify: ^0.8.4

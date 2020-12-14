@@ -76,3 +76,66 @@ $$\det S = s_x s_y.$$
 
 $$S = E\; \Leftrightarrow s_x = 1,\,s_y=1.$$
 
+\subsubsection{Разложение S}
+
+$$S_x = \begin{pmatrix}
+	s_x & 0 \\
+	0 & 1
+\end{pmatrix}$$
+
+$$\det S_x = s_x.$$
+
+$$S_y = \begin{pmatrix}
+	1 & 0 \\
+	0 & s_y
+\end{pmatrix}$$
+
+$$\det S_y = s_y.$$
+
+$$M = \begin{pmatrix}
+	-1 & 0 \\
+	0 & 1
+\end{pmatrix}$$
+
+$$\det M = 1;$$
+
+$$M^{-1} = M.$$
+
+$$M_x = \begin{pmatrix}
+	\pm 1 & 0 \\
+	0 & 1
+\end{pmatrix}$$
+
+$$\det M_x = \pm 1;$$
+
+$$M_x^{-1} = M_x.$$
+
+$$M_y = \begin{pmatrix}
+	1 & 0 \\
+	0 & \pm 1
+\end{pmatrix}$$
+
+$$\det M_y = \pm 1;$$
+
+$$M_y^{-1} = M_y.$$
+
+$$M_y = -M_x.$$
+
+
+$$D = \begin{pmatrix}
+	d & 0 \\
+	0 & d^{-1}
+\end{pmatrix}$$
+
+$$\det D = 1;$$
+
+Все эти матрицы коммутируют между собой.
+
+Возможны два однозначных разложения S:
+$$S = S_x S_y;$$
+$$S = s M_x D;$$
+$$S = s M_y D.$$
+
+Вариант $$s M_y D$$ преобразуется в $s M_x D$ сменой знака параметра $d$, поэтому далее рассматриваться не будет.
+
+где $s$ - положительная скалярная величина, $m$ - степень вхождения матрицы отражения

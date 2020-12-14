@@ -12,3 +12,8 @@ X_1:affineX(h_x1);
 X_2:affineX(h_x2);
 Y_1:affineY(h_y1);
 Y_2:affineY(h_y2);
+
+S_x:affineS(s_x,1);
+S_y:affineS(1,s_y);
+M:affineS(-1,1);
+N:affineS(1,-1);

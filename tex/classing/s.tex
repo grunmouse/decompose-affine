@@ -1,0 +1,56 @@
+\subsection{Содержащие $S$}
+
+Матрица $S$ содержит два параметра, значит матрицами с единичным детерминантом должны быть внесены ещё два.
+Однотипные матрицы не могут следовать друг за другом.
+Матрица $D$ считается однотипной с $S$, т.к. их произведение даёт неразложимую диагональную матрицу.
+Матрицы $X$ и $Y$ не могут входить дважды, т.к. это породило бы неразложимую треугольную матрицу.
+Матрица $D$ не может входить одновременно с $X$ или $Y$, т.к. это породило бы неразложимую треугольную матрицу
+
+\begin{enumerate}
+	\item $X$ и $Y$:
+	\begin{enumerate}
+		\item C $S$ с краю:
+		\begin{itemize}
+			\item $SXY$
+			\item $SYX$
+			\item $YXS$
+			\item $XYS$
+		\end{itemize}
+		\item С $S$ посередине:
+		\begin{itemize}
+			\item $XSY$
+			\item $YSX$
+		\end{itemize}
+	\end{enumerate}
+	\item $R$ и $X$ или $Y$:
+	\begin{enumerate}
+		\item С $R$ с краю:
+		\begin{itemize}
+			\item $RSX$
+			\item $RSY$
+			\item $RXS$
+			\item $RYS$
+			\item $SXR$
+			\item $SYR$
+			\item $XSR$
+			\item $YSR$
+		\end{itemize}
+		\item С $R$ посередине:
+		\begin{itemize}
+			\item $SRX$
+			\item $SRY$
+			\item $XRS$
+			\item $YRS$
+		\end{itemize}
+	\end{enumerate}
+	\item $R$ и $D$:
+	\begin{itemize}
+			\item $SRD$
+			\item $DRS$
+	\end{itemize}
+	\item Два $R$:
+	\begin{itemize}
+			\item $R_1SR_2$
+	\end{itemize}
+\end{enumerate}
+
