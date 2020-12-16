@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@grunmouse/special-map": "link:..\\special-map",
     "jsverify": "^0.8.4"
   },
   "dependencies": {

@@ -1,6 +1,7 @@
 dependencies:
   double.js: 1.0.14
 devDependencies:
+  '@grunmouse/special-map': 'link:../special-map'
   jsverify: 0.8.4
 lockfileVersion: 5.1
 packages:
@@ -42,5 +43,6 @@ packages:
     resolution:
       integrity: sha1-rHO/pfJTQ0aOLQ8zRsYRe8A9PJk=
 specifiers:
+  '@grunmouse/special-map': 'link:..\special-map'
   double.js: ^1.0.14
   jsverify: ^0.8.4

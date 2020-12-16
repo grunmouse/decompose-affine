@@ -7,6 +7,8 @@ R_1:affineR(sin(a_1),cos(a_1));
 R_2:affineR(sin(a_2),cos(a_2));
 
 D:affineS(d,1/d);
+D_1:affineS(d_1,1/d_1);
+D_2:affineS(d_2,1/d_2);
 
 X_1:affineX(h_x1);
 X_2:affineX(h_x2);
@@ -17,3 +19,8 @@ S_x:affineS(s_x,1);
 S_y:affineS(1,s_y);
 M:affineS(-1,1);
 N:affineS(1,-1);
+
+S_x1:affineS(s_x1, 1);
+S_x2:affineS(s_x2, 1);
+S_y1:affineS(1,s_y1);
+S_y2:affineS(1,s_y2);

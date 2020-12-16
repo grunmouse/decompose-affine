@@ -1,0 +1,310 @@
+{
+	"legend":{"by":"det"},
+	"classes":{
+		"S":{
+			"X Y":{
+				"S * *":["S X Y", "S Y X"],
+				"* * S":["X Y S", "Y X S"],
+				"* S *": ["X S Y", "Y S X"]
+			},
+			"R X|Y":{
+				"R * *":["R S X", "R X S", "R S Y", "R Y S"],
+				"* * R":["S X R", "X S R", "S Y R", "Y S R"],
+				"* R *":["S R X", "X R S", "S R Y", "Y R S"]
+			},
+			"R D":["S R D", "D R S"],
+			"R R":["R S R"]
+		},
+		"S Sx|Sy":[
+			"S R Sx",
+			"S R Sy",
+			"Sx R S",
+			"Sy R S"
+		],
+		"Sx Sy":{
+			"X Y":{
+				"S * S *" : [
+					"Sx X Sy Y",
+					"Sx Y Sy X",
+					"Sy X Sx Y",
+					"Sy Y Sx X"
+				],
+				"* S * S" : [
+					"X Sx Y Sy",
+					"Y Sx X Sy",
+					"X Sy Y Sx",
+					"Y Sy X Sx"
+				],
+				"S * * S" : [
+					"Sx X Y Sy",
+					"Sx Y X Sy",
+					"Sy X Y Sx",
+					"Sy Y X Sx"
+				]
+			},
+			"R X|Y":{
+				"R S * S": [
+					"R Sx X Sy",
+					"R Sx Y Sy",
+					"R Sy X Sx",
+					"R Sy Y Sx"
+				],
+				"S * S R": [
+					"Sx X Sy R",
+					"Sx Y Sy R",
+					"Sy X Sx R",
+					"Sy Y Sx R"
+				],
+				"* S R S": [
+					"X Sy R Sx",
+					"Y Sy R Sx",
+					"X Sx R Sy",
+					"Y Sx R Sy"
+				],
+				"S R S *": [
+					"Sy R Sx X",
+					"Sy R Sx Y",
+					"Sx R Sy X",
+					"Sx R Sy Y"
+				],
+				"S * R S": [
+					"Sy X R Sx",
+					"Sy Y R Sx",
+					"Sx X R Sy",
+					"Sx Y R Sy"
+				],
+				"S R * S": [
+					"Sy R X Sx",
+					"Sy R Y Sx",
+					"Sx R X Sy",
+					"Sx R Y Sy"
+				]
+			},
+			"R R":[
+				"R Sx R Sy",
+				"R Sy R Sx",
+				"Sx R Sy R",
+				"Sy R Sx R"
+			],
+			"R D => S": {
+				"base":["S"],
+				"convert":[["Sx D", "Sy D"], "S"]
+			},
+			"R D => S Sx|Sy": {
+				"base":["S Sx|Sy"],
+				"convert":[["Sx D", "Sy D"], "S"]
+			},
+			"S_S":{
+				"base":["S"],
+				"convert":["Sx Sy", "S"]
+			}
+		},
+		"Sx Sy Sx|Sy":{
+			"base":["S Sx|Sy"],
+			"convert":["Sx Sy", "S"]
+		},
+		"Sx":{
+			"D":{
+				"X Y":[
+					"Sx X Y D",
+					"Sx Y X D",
+					"X Sx Y D",
+					"Y Sx X D",
+					"Sx X D Y",
+					"Sx Y D X",
+					"X D Y Sx",
+					"Y D X Sx",
+					"D X Sx Y",
+					"D Y Sx X",
+					"D X Y Sx",
+					"D Y X Sx"
+				],
+				"R X|Y":[
+					"Sx X R D",
+					"Sx Y R D",
+					"Sx R Y D",
+					"Sx R X D",
+					"X Sx R D",
+					"Y Sx R D",
+					"R Sx X D",
+					"R Sx Y D",
+					"Sx X D R",
+					"Sx Y D R",
+					"Sx R D X",
+					"Sx R D Y",
+					"X D R Sx",
+					"Y D R Sx",
+					"R D X Sx",
+					"R D Y Sx",
+					"D X Sx R",
+					"D Y Sx R",
+					"D X R Sx",
+					"D Y R Sx",
+					"D R Sx X",
+					"D R Sx Y",
+					"D R X Sx",
+					"D R Y Sx"
+				],
+				"R R":[
+					"R D R Sx",
+					"R Sx R D",
+					"D R Sx R",
+					"Sx R D R"
+				]
+			},
+			"X Y X|Y":[
+				"Sx X Y X",
+				"Sx Y X Y",
+				"X Sx X Y",
+				"X Sx Y X",
+				"Y Sx X Y",
+				"Y Sx Y X",
+				"X Y Sx X",
+				"X Y Sx Y",
+				"Y X Sx X",
+				"Y X Sx Y",
+				"Y X Y Sx",
+				"X Y X Sx"
+			],
+			"R":[
+				"Y Sx X R",
+				"Sx X Y R",
+				"Sx Y X R",
+				"Sx X R X",
+				"Sx X R Y",
+				"Sx Y R X",
+				"Sx Y R Y",
+				"Sx R X Y",
+				"Sx R Y X",
+				"X Sx X R",
+				"X Sx Y R",
+				"X Sx R X",
+				"X Sx R Y",
+				"X Y Sx R",
+				"X Y R Sx",
+				"X R Sx X",
+				"X R Sx Y",
+				"X R X Sx",
+				"X R Y Sx",
+				"Y Sx Y R",
+				"Y Sx R X",
+				"Y Sx R Y",
+				"Y X Sx R",
+				"Y X R Sx",
+				"Y R Sx X",
+				"Y R Sx Y",
+				"Y R X Sx",
+				"Y R Y Sx",
+				"R Sx X Y",
+				"R Sx Y X",
+				"R X Sx X",
+				"R X Sx Y",
+				"R X Y Sx",
+				"R Y Sx X",
+				"R Y Sx Y",
+				"R Y X Sx"
+			],
+			"R R":[
+				"R Sx X R",
+				"R Sx Y R",
+				"R X Sx R",
+				"R Y Sx R",
+				"X R Sx R",
+				"Y R Sx R",
+				"Sx R X R",
+				"Sx R Y R",
+				"R Sx R X",
+				"R Sx R Y",
+				"R X R Sx",
+				"R Y R Sx"
+			]
+		},
+		"Sx Sx":{
+			"X Y":[
+				"Sx X Sx Y",
+				"Sx Y Sx X",
+				"X Sx Y Sx",
+				"Y Sx X Sx",
+				"Sx Y X Sx",
+				"Sx X Y Sx"
+			],
+			"X|Y R":[
+				"Sx X Sx R",
+				"Sx Y Sx R",
+				"Sx R Sx X",
+				"Sx R Sx Y",
+				"X Sx R Sx",
+				"Y Sx R Sx",
+				"R Sx X Sx",
+				"R Sx Y Sx",
+				"Sx X R Sx",
+				"Sx Y R Sx",
+				"Sx R X Sx",
+				"Sx R Y Sx"
+			],
+			"R R":[
+				"Sx R Sx R",
+				"R Sx R Sx"
+			]
+		},
+		"Sy":{},
+		"Sy Sy":{
+			"X Y":[
+				"Sy X Sy Y",
+				"Sy Y Sy X",
+				"X Sy Y Sy",
+				"Y Sy X Sy",
+				"Sy Y X Sy",
+				"Sy X Y Sy"
+			],
+			"X|Y R":[
+				"Sy X Sy R",
+				"Sy Y Sy R",
+				"Sy R Sy X",
+				"Sy R Sy Y",
+				"R Sy X Sy",
+				"R Sy Y Sy",
+				"X Sy R Sy",
+				"Y Sy R Sy",
+				"Sy X R Sy",
+				"Sy Y R Sy",
+				"Sy R X Sy",
+				"Sy R Y Sy"
+			],
+			"R R":[
+				"Sy R Sy R",
+				"R Sy R Sy"				
+			]
+		},
+		"Sx s":{
+			"base":["S"],
+			"convert":["Sx", "S"]
+		},
+		"Sx Sx|Sy s":{
+			"base":["S Sx|Sy"],
+			"convert":["Sx", "S"]
+		},
+		"Sy Sy s":{
+			"base":["S Sx|Sy"],
+			"convert":["Sy", "S"]
+		},
+		"Sy s":{
+			"base":["S"],
+			"convert":["Sy", "S"]
+		},
+		"s":{
+			"X Y X|Y":["X Y X", "Y X Y"],
+			"R (X X)|(Y Y)":["X R X", "Y R Y"],
+			"R X Y":{
+				"R * *": ["R X Y", "R Y X"],
+				"* * R": ["X Y R", "Y X R"],
+				"* R *": ["X R Y", "Y R X"]
+			},
+			"R R": ["R X R", "R Y R"],
+			"D":{
+				"convert":["D", "S"],
+				"base":["S"]
+			}
+		}
+	}
+}
