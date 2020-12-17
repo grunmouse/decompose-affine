@@ -1,0 +1,231 @@
+\subsection{Разложение с общим масштабом и множителем $XY$ или $YX$}
+
+\paragraph{XYR}
+
+
+$$B = XYR =
+\begin{pmatrix}
+	\left( {h_x} \left( {h_y} \cos{\alpha} + \sin{\alpha}\right) + \cos{\alpha}\right) & 
+	\left( {h_x} \left( \cos{\alpha} - {h_y}\sin{\alpha} \right) - \sin{\alpha}\right) \\
+	\left( {h_y} \cos{\alpha} + \sin{\alpha}\right) & 
+	\left( \cos{\alpha} - {h_y} \sin{\alpha}\right)
+\end{pmatrix}.
+$$
+
+$$b_{21}^2 + b_{22}^2 = h_y^2 + 1;$$
+$$h_y = \pm \sqrt{b_{21}^2 + b_{22}^2 - 1}.$$
+
+Условие разложимости $b_{21}^2 + b_{22}^2 \ge 1$.
+
+Тогда из системы
+
+$$
+\begin{cases}
+	b_{21} = {h_y} \cos{\alpha} + \sin{\alpha},\\
+	b_{22} = \cos{\alpha} - {h_y} \sin{\alpha}.
+\end{cases}
+$$
+
+$$\begin{pmatrix}
+	h_y & 1 & \vrule & b_{21} \\
+	1 & -h_y & \vrule  & b_{22}
+\end{pmatrix}$$
+
+$$\Delta = \begin{vmatrix}
+	h_y & 1\\
+	1 & -h_y
+\end{vmatrix} = - (h_y^2 + 1);$$
+
+$$\Delta_{\sin}\begin{vmatrix}
+	h_y & b_{21}\\
+	1 &   b_{22}
+\end{vmatrix} = h_y b_{22} - b_{21}$$
+
+$$\Delta_{\cos}\begin{vmatrix}
+	b_{21} & 1\\
+	b_{22} & -h_y
+\end{vmatrix} = -h_y b_{21} - b_{22}$$
+
+$$\cos\alpha = \frac{h_y b_{21} + b_{22}}{h_y^2 + 1};$$
+$$\sin\alpha = \frac{b_{21} - h_y b_{22}}{h_y^2 + 1};$$
+
+$$\cos\alpha = \frac{h_y b_{21} + b_{22}}{b_{21}^2 + b_{22}^2};$$
+$$\sin\alpha = \frac{b_{21} - h_y b_{22}}{b_{21}^2 + b_{22}^2};$$
+
+
+$h_x$ Можно найти из одного из уравнений
+
+$$
+\begin{cases}
+	b_{11} = {h_x} b_{21} + \cos{\alpha},\\
+	b_{12} = {h_x} b_{22} - \sin{\alpha}.\\
+\end{cases}
+$$
+
+\paragraph{YXR}
+
+$$YXR = \begin{pmatrix}
+	\cos\alpha + {h_x} \sin\alpha & 
+	{h_x} \cos\alpha -\sin\alpha \\
+	{h_y}\left( {h_x}\sin\alpha + \cos\alpha\right)  +\sin\alpha & 
+	{h_y}\left( {h_x}\cos\alpha - \sin\alpha\right)  +\cos\alpha
+\end{pmatrix}$$
+
+$$b_{11}^2 + b_{12}^2 = h_x^2 + 1;$$
+
+
+$$
+\begin{cases}
+	b_{11} = \cos\alpha + {h_x} \sin\alpha,\\
+	b_{12} = h_x \cos\alpha - \sin{\alpha}.
+\end{cases}
+$$
+
+
+$$\Delta = \begin{vmatrix}
+	1 & h_x\\
+	h_x & -1
+\end{vmatrix} = - (h_x^2 + 1);$$
+
+$$\Delta_{\sin}\begin{vmatrix}
+	1 & b_{11}\\
+	h_x &   b_{12}
+\end{vmatrix} = b_{12} -  h_x b_{11}$$
+
+$$\Delta_{\cos}\begin{vmatrix}
+	b_{11} & h_x\\
+	b_{12} & -1
+\end{vmatrix} = -b_{11} - h_x b_{12}$$
+
+$$\cos\alpha = \frac{b_{11} + h_x b_{12}}{h_x^2 + 1}$$
+$$\sin\alpha = \frac{h_x b_{11} - b_{12}}{h_x^2 + 1}$$
+
+$$\cos\alpha = \frac{b_{11} + h_x b_{12}}{b_{11}^2 + b_{12}^2}$$
+$$\sin\alpha = \frac{h_x b_{11} - b_{12}}{b_{11}^2 + b_{12}^2}$$
+
+$$b_{21} = {h_y}\left( {h_x}\sin\alpha + \cos\alpha\right) +  \sin\alpha;$$
+$$b_{22} = {h_y}\left( {h_x}\cos\alpha - \sin\alpha\right) +  \cos\alpha;$$
+
+\paragraph{RXY}
+
+\[
+RXY =
+\begin{pmatrix}
+	\cos\alpha \left( {h_x} {h_y}+1\right) -\sin\alpha {h_y} & 
+	{h_x} \cos\alpha -\sin\alpha\\
+	\sin\alpha \left( {h_x} {h_y}+1\right) +\cos\alpha {h_y} & 
+	{h_x} \sin\alpha +\cos\alpha
+\end{pmatrix}
+\]
+
+$$b_{12}^2 + b_{22}^2 = h_x^2 + 1;$$
+
+$$\begin{cases}
+	b_{12} = {h_x} \cos\alpha -\sin\alpha,\\
+	b_{22} = \cos\alpha + {h_x} \sin\alpha;
+\end{cases}$$
+
+$$\Delta = \begin{vmatrix}
+	h_x & -1\\
+	1 & h_x
+\end{vmatrix} = h_x^2 + 1;$$
+
+$$\Delta_{\cos}\begin{vmatrix}
+	b_{12} & -1\\
+	b_{22} & h_x
+\end{vmatrix} = h_x b_{12} + b_{22}$$
+
+$$\Delta_{\sin}\begin{vmatrix}
+	h_x & b_{12}\\
+	1 & b_{22}\\
+\end{vmatrix} = h_x b_{22} - b_{12}$$
+
+$$\cos\alpha = \frac{h_x b_{12} + b_{22}}{h_x^2 + 1};$$
+$$\sin\alpha = \frac{h_x b_{22} - b_{12}}{h_x^2 + 1};$$
+
+$$\cos\alpha = \frac{h_x b_{12} + b_{22}}{b_{12}^2 + b_{22}^2};$$
+$$\sin\alpha = \frac{h_x b_{22} - b_{12}}{b_{12}^2 + b_{22}^2};$$
+
+\paragraph{RYX}
+
+\[
+RYX = 
+\begin{pmatrix}
+	\cos\alpha - {h_y} \sin\alpha &
+	{h_x} \cos\alpha - \left( {h_x} {h_y} + 1\right) \sin\alpha \\
+	{h_y} \cos\alpha + \sin\alpha & 
+	\left( {h_x} {h_y} + 1\right)\cos\alpha + \sin\alpha {h_x}
+\end{pmatrix}
+\]
+
+$$b_{11}^2 + b_{21} = h_y^2 + 1;$$
+
+$$\begin{cases}
+	b_{11} = \cos\alpha - {h_y} \sin\alpha,\\
+	b_{21} = {h_y} \cos\alpha + \sin\alpha;
+\end{cases}$$
+
+$$\Delta = \begin{vmatrix}
+	1 & -h_y\\
+	h_y & 1
+\end{vmatrix} = h_y^2 + 1;$$
+
+$$\Delta_{\cos}\begin{vmatrix}
+	b_{11} & -h_y\\
+	b_{21} & 1
+\end{vmatrix} = b_{11} + h_y b_{21}$$
+
+$$\Delta_{\sin}\begin{vmatrix}
+	1   & b_{11}\\
+	h_y & b_{21}\\
+\end{vmatrix} = b_{21} - h_y b_{11}$$
+
+
+$$\cos\alpha = \frac{b_{11} + h_y b_{21}}{h_y^2 + 1}$$
+$$\sin\alpha = \frac{b_{21} - h_y b_{11}}{h_y^2 + 1}$$
+
+$$\cos\alpha = \frac{b_{11} + h_y b_{21}}{b_{11}^2 + b_{21}^2}$$
+$$\sin\alpha = \frac{b_{21} - h_y b_{11}}{b_{11}^2 + b_{21}^2}$$
+
+
+\subsection{Обобщение}
+
+$$\begin{cases}
+	d = b_{22}, & \pos(X) < \pos(Y); \\
+	d = b_{11}, & \pos(X) > \pos(Y). \\
+\end{cases}$$
+
+$$\begin{cases}
+	d' = b_{11}, & \pos(X) < \pos(Y); \\
+	d' = b_{22}, & \pos(X) > \pos(Y). \\
+\end{cases}$$
+
+$$\begin{cases}
+	c = b_{21}, & \pos(Y) = 2; \\
+	c = b_{12}, & \pos(X) = 2. \\
+\end{cases}$$
+
+$$q = c^2 + d^2;$$
+
+Условие разложимости: $q > 1$.
+
+$$h = \pm \sqrt{q - 1};$$
+
+$$\cos\alpha = \frac{h c + d}{q};$$
+
+$$\sin\alpha' = \frac{h d - c}{q};$$
+
+$$h' = \frac{d' - \cos\alpha}{h \cos\alpha - \sin\alpha'}.$$
+
+$$\begin{cases}
+	\begin{cases}
+		\sin\alpha = -\sin\alpha',\\
+		h_y = h,\\
+		h_x = h',\\
+	\end{cases} & \pos(Y) = 2; \\
+	\begin{cases}
+		\sin\alpha = \sin\alpha',\\
+		h_y = h',\\
+		h_x = h,\\
+	\end{cases} & \pos(X) = 2. \\
+\end{cases}$$

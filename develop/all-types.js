@@ -162,12 +162,43 @@ classing = untypedRecursive(classing);
 
 const classed = require('./read-classing.js')();
 
+const sx_sy = (item)=>{
+	let nodet = item.nodetComponents();
+	
+	let type = item.type();
+	
+	let R = type.reduce((akk, t)=>(akk + (t==='R')), 0);
+	
+	if(R === 0){
+		return 'XY';
+	}
+	
+	return 'other';
+};
+
 classMap(classing.get(4), 
 	{
 		' S ': (item)=>{
-			let nodet = item.nodetComponents();
 			
-			let type = nodet.type().sort();
+			let type = item.type();
+			
+			let R = type.reduce((akk, t)=>(akk + (t==='R')), 0);
+			
+			if(R === 0){
+				return ' X Y ';
+			}
+			else if(R === 1){
+				if(type.includes('D')){
+					return ' D R ';
+				}
+
+				if(type.indexOf('R') === 1){
+					return ' * R * ';
+				}
+				else{
+					return ' R * * , * * R ';
+				}
+			}
 			
 			return untrim(type);
 			
@@ -175,7 +206,7 @@ classMap(classing.get(4),
 		' s ': (item)=>{
 			let nodet = item.nodetComponents();
 			
-			let type = nodet.type().sort();
+			let type = nodet.type();
 			
 			let R = type.reduce((akk, t)=>(akk + (t==='R')), 0);
 			
@@ -195,20 +226,62 @@ classMap(classing.get(4),
 		
 		' Sy ': (item)=>{
 			let brkt = item.bracketComponents().type();
-			console.log(brkt);
 			if(brkt.includes('Sy')){
 				return 'Sy * * * , * * * Sy';
+			}
+			
+			return 'other';
+		},
+		
+		' Sx Sx ':sx_sy,
+		' Sx Sy ':sx_sy,
+		' Sy Sy ':sx_sy
+	}
+);
+classMap(classing.get(3), 
+	{
+		" ": (item)=>{
+			let type = item.type();
+			
+			let R = type.reduce((akk, t)=>(akk + (t==='R')), 0);
+			
+			let D = type.reduce((akk, t)=>(akk + (t==='D')), 0);
+			
+			if(R === 0 && D === 0){
+				return 'XY';
+			}
+			
+			if(D === 1){
+				return 'D';
 			}
 			
 			return 'other';
 		}
 	}
 );
-classMap(classing.get(3), 
-	{
-		
-	}
-);
+
+//Три матрицы $S_x$, $S_y$ (одна из них входит дважды) - всегда допускает замену $S_x S_y = S$
+classing.get(4).delete(' Sx Sx Sy ');
+classing.get(4).delete(' Sx Sy Sy ');
+
+//Скаляр $s$ и матрица $S_x$ или $S_y$ - допускает замену $s S_x = S$ или $s S_y = S$
+classing.get(4).delete(' Sy s ');
+classing.get(4).delete(' Sx s ');
+
+//Скаляр $s$ и две матрицы $S_x$, $S_y$ (возможно однотипные) - допускает замену $s S_x = S$ или $s S_y = S$
+classing.get(4).delete(' Sx Sx s ');
+classing.get(4).delete(' Sx Sy s ');
+classing.get(4).delete(' Sy Sy s ');
+
+//s_m.tex Исчерпано
+classing.get(4).delete(' s ');
+
+//s.tex Исчерпано
+classing.get(4).delete(' S ');
+
+//s_sx.tex Исчерпано
+classing.get(4).delete(' S Sx ');
+classing.get(4).delete(' S Sy ');
 
 
 printTree(classing.get(4));

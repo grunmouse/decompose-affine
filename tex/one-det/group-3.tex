@@ -1,0 +1,95 @@
+\subsection{Третья группа разложений}
+
+Случаи, когда $R$ стоит между $S$ и $X$ или $Y$.
+
+Диагностический признак $\pos(R)=2$.
+
+$$SRX = 
+\begin{pmatrix}
+	{s_x}\cos\alpha  & \left({h_x} \cos\alpha -\sin\alpha\right)  {s_x}\\
+	{s_y}\sin\alpha  & \left({h_x} \sin\alpha +\cos\alpha\right)  {s_y}
+\end{pmatrix}
+$$
+$$XRS = \begin{pmatrix}
+	{h_x} {s_x} \sin\alpha + {s_x} \cos\alpha & {h_x} {s_y} \cos\alpha-{s_y} \sin\alpha\\
+	{s_x} \sin\alpha & {s_y} \cos\alpha
+\end{pmatrix}$$
+
+$$YRS = \begin{pmatrix}
+{s_x} \cos\alpha & -{s_y} \sin\alpha\\
+{h_y} {s_x} \cos\alpha+{s_x} \sin\alpha & {s_y} \cos\alpha-{h_y} {s_y} \sin\alpha
+\end{pmatrix}$$
+$$SRY =
+\begin{pmatrix}
+\left( \cos\alpha-{h_y} \sin\alpha\right)  {s_x} & -{s_x} \sin\alpha\\
+\left( {h_y} \cos\alpha+\sin\alpha\right)  {s_y} & {s_y} \cos\alpha
+\end{pmatrix}
+$$
+
+Легко видеть, что в каждом варианте присутствуют два члена, произведение которых равно $\pm s_x s_y \sin\alpha \cos\alpha$.
+
+Введём допонительную переменную
+
+$$T = \cos\alpha\sin\alpha.$$
+
+Таким образом, условие разложимости - $-2<T<2$. 
+
+Для вычисления $T$ введём промежуточные переменные $p$ и $q$:
+
+$$\begin{cases}
+	p = a_{21}, & \pos(X)>0;\\
+	p = -a_{12}, & \pos(Y)>0.
+\end{cases}$$
+
+$$\begin{cases}
+	q = a_{11}, & \pos(X)=3 \vee \pos(Y)=1;\\
+	q = a_{22}, & \pos(X)=1 \vee \pos(Y)=3.
+\end{cases}$$
+
+$$T = \frac{pq}{\det A}.$$
+
+Образуется общая часть расчета:
+
+$$\sin(2\alpha) = 2T;$$
+
+$$\cos(2\alpha) = \pm \sqrt{1-4T^2};$$
+
+$$\cos\alpha = \pm \sqrt{\frac{1 + \cos(2\alpha)}{2}};$$
+
+$$\sin\alpha = \frac{T}{\cos\alpha}.$$
+
+В зависимости от выбора знаков, имеется четыре решения.
+
+В случае, когда $T=0$, примем решения
+$$\left[ \begin{gathered}
+\begin{cases}
+	\sin\alpha = 0,\\
+	\cos\alpha = \pm 1;
+\end{cases}\\
+\begin{cases}
+	\sin\alpha = \pm 1,\\
+	\cos\alpha = 0.
+\end{cases}
+\end{gathered}\right.$$
+
+Для обобщения расчётов, введём промежуточные переменные $d$, $n$.
+
+$$\begin{cases}
+	\begin{cases}
+		s_x = \frac{a_{11}}{\cos\alpha},\\
+		s_y = \frac{\det A}{s_x},\\
+		d = s_x \sin\alpha,\\
+		n = a_{11},\\
+	\end{cases} & \pos(X)=3 \vee \pos(Y)=1;\\
+	\begin{cases}
+		s_y = \frac{a_{22}}{\cos\alpha},\\
+		s_x = \frac{\det A}{s_y},\\
+		d = s_y \sin\alpha,\\
+		n = a_{22},
+	\end{cases} & \pos(Y)=3 \vee \pos(X) = 1.
+\end{cases}$$
+
+
+$$h_x = \frac{a_{12} + d}{b}.$$
+$$h_y = \frac{a_{21} - d}{b}.$$
+

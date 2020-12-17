@@ -1,0 +1,195 @@
+\subsection{С двумя R}
+
+\paragraph{RXR}
+
+$$R_1XR_2 = 
+\begin{pmatrix}
+ \frac{{h_x}\sin{\left( {\alpha_2}+{\alpha_1}\right) } }{2}+\frac{{h_x}\sin{\left( {\alpha_2}-{\alpha_1}\right) } }{2}+\cos{\left( {\alpha_2}+{\alpha_1}\right) } & 
+ \frac{{h_x}\cos{\left( {\alpha_2}+{\alpha_1}\right) } }{2}+\frac{{h_x}\cos{\left( {\alpha_2}-{\alpha_1}\right) } }{2}-\sin{\left( {\alpha_2}+{\alpha_1}\right) } \\
+-\frac{{h_x}\cos{\left( {\alpha_2}+{\alpha_1}\right) } }{2}+\frac{{h_x}\cos{\left( {\alpha_2}-{\alpha_1}\right) } }{2}+\sin{\left( {\alpha_2}+{\alpha_1}\right) } & 
+ \frac{{h_x}\sin{\left( {\alpha_2}+{\alpha_1}\right) } }{2}-\frac{{h_x}\sin{\left( {\alpha_2}-{\alpha_1}\right) } }{2}+\cos{\left( {\alpha_2}+{\alpha_1}\right) }
+\end{pmatrix}
+$$
+
+Обозначим 
+$$\alpha_2 - \alpha_1 = \delta;$$
+$$\alpha_2 + \alpha_1 = \sigma.$$
+
+$$R_1XR_2 = 
+\begin{pmatrix}
+ \frac{{h_x}\sin\sigma }{2}+\frac{{h_x}\sin\delta }{2}+\cos\delta & 
+ \frac{{h_x}\cos\sigma }{2}+\frac{{h_x}\cos\delta }{2}-\sin\delta \\
+-\frac{{h_x}\cos\sigma }{2}+\frac{{h_x}\cos\delta }{2}+\sin\delta & 
+ \frac{{h_x}\sin\sigma }{2}-\frac{{h_x}\sin\delta }{2}+\cos\delta
+\end{pmatrix}
+$$
+
+$$b_{11} - b_{22} = h_x \sin\delta;$$
+$$b_{12} + b_{21} = h_x \cos\delta ;$$
+
+$$\left(b_{11} - b_{22}\right)^2 + \left(b_{12} + b_{21}\right)^2 = h_x^2;$$
+$$\sin\delta = \frac{b_{11} - b_{22}}{h_x};$$
+$$\cos\delta = \frac{b_{12} + b_{21}}{h_x};$$
+
+$$\frac{{h_x}\sin\sigma }{2} + \frac{{h_x}\sin\delta }{2} = b_{11} - \cos\delta;$$
+$$\sin\sigma + \sin\delta = \frac{2 (b_{11} - \cos\delta)}{h_x};$$
+$$\sin\sigma = \frac{2 (b_{11} - \cos\delta)}{h_x} - \sin\delta;$$
+
+$$\sin\sigma + \sin\delta = 2 \cos\alpha_1 \sin\alpha_2;$$
+$$\cos\alpha_1 \sin\alpha_2 = \frac{b_{11} - \cos\delta}{h_x};$$
+
+
+$$\frac{{h_x}\cos\sigma }{2} + \frac{{h_x}\cos\delta }{2} = b_{12} + \sin\delta;$$
+$$\cos\sigma + \cos\delta = \frac{2 (b_{12} + \sin\delta)}{h_x};$$
+$$\cos\sigma = \frac{2 (b_{12} + \sin\delta)}{h_x} - \cos\delta;$$
+
+$$\cos\sigma + \cos\delta = 2 \cos\alpha_1 \cos\alpha_2;$$
+$$\cos\alpha_1 \cos\alpha_2 = \frac{b_{12} + \sin\delta}{h_x};$$
+
+$$\left( \frac{b_{11} - \cos\delta}{h_x} \right)^2 + \left( \frac{b_{12} + \sin\delta}{h_x} \right)^2 = \cos^2 \alpha_1;$$
+$$\frac{\left( b_{11} - \cos\delta \right)^2 + \left(b_{12} + \sin\delta\right)^2}{h_x^2} = \cos^2 \alpha_1;$$
+
+$$\sin\alpha_2 = \frac{b_{11} - \cos\delta}{h_x \cos\alpha_1};$$
+$$\cos\alpha_2 = \frac{b_{12} + \sin\delta}{h_x \cos\alpha_1};$$
+
+
+\paragraph{RYR}
+
+$$R_1YR_2 =
+\begin{pmatrix}
+-\frac{{h_y} \sin{\left( {\alpha_2}+{\alpha_1}\right) } }{2}+\frac{{h_y} \sin{\left( {\alpha_2}-{\alpha_1}\right) } }{2}+\cos{\left( {\alpha_2}+{\alpha_1}\right) } & 
+-\frac{{h_y} \cos{\left( {\alpha_2}+{\alpha_1}\right) } }{2}+\frac{{h_y} \cos{\left( {\alpha_2}-{\alpha_1}\right) } }{2}-\sin{\left( {\alpha_2}+{\alpha_1}\right) }\\
+ \frac{{h_y} \cos{\left( {\alpha_2}+{\alpha_1}\right) } }{2}+\frac{{h_y} \cos{\left( {\alpha_2}-{\alpha_1}\right) } }{2}+\sin{\left( {\alpha_2}+{\alpha_1}\right) } & 
+-\frac{{h_y} \sin{\left( {\alpha_2}+{\alpha_1}\right) } }{2}-\frac{{h_y} \sin{\left( {\alpha_2}-{\alpha_1}\right) } }{2}+\cos{\left( {\alpha_2}+{\alpha_1}\right) }
+\end{pmatrix}
+$$
+
+Обозначим 
+$$\alpha_2 - \alpha_1 = \delta;$$
+$$\alpha_2 + \alpha_1 = \sigma.$$
+
+$$R_1YR_2 =
+\begin{pmatrix}
+-\frac{{h_y} \sin\sigma }{2}+\frac{{h_y}\sin\delta }{2}+\cos\delta  & 
+-\frac{{h_y} \cos\sigma }{2}+\frac{{h_y}\cos\delta }{2}-\sin\delta \\
+ \frac{{h_y} \cos\sigma }{2}+\frac{{h_y}\cos\delta }{2}+\sin\delta  & 
+-\frac{{h_y} \sin\sigma }{2}-\frac{{h_y}\sin\delta }{2}+\cos\delta 
+\end{pmatrix}
+$$
+
+
+
+$$b_{11} - b_{22} = {h_y}\sin\delta  $$
+$$b_{12} + b_{21} = {h_y}\cos\delta  $$
+
+$$\left(b_{11} - b_{22}\right)^2 + \left(b_{12} + b_{21}\right)^2 = h_y^2;$$
+$$\sin\delta = \frac{b_{11} - b_{22}}{h_y};$$
+$$\cos\delta = \frac{b_{12} + b_{21}}{h_y};$$
+
+$$\frac{{h_y} (-\sin\sigma + \sin\delta)}{2} = b_{11} - \cos\delta;$$
+$$(-\sin\sigma + \sin\delta) = \frac{2(b_{11} - \cos\delta)}{h_y};$$
+$$-\sin\sigma + \sin\delta = -2\sin\alpha_1 \cos\alpha_2;$$
+$$-\sin\alpha_1 \cos\alpha_2 = \frac{(b_{11} - \cos\delta)}{h_y};$$
+
+$$\frac{{h_y} (-\cos\sigma + \cos\delta)}{2} = b_{12} + \sin\delta;$$
+$$(-\cos\sigma + \cos\delta) = \frac{2(b_{12} + \sin\delta)}{h_y};$$
+$$-\cos\sigma + \cos\delta =  2\sin\alpha_1 \sin\alpha_2;$$
+$$ \sin\alpha_1 \sin\alpha_2 = \frac{(b_{12} + \sin\delta)}{h_y};$$
+
+$$
+\left( \frac{(b_{11} - \cos\delta)}{h_y} \right)^2
++
+\left( \frac{(b_{12} + \sin\delta)}{h_y} \right)^2
+= \sin^2 \alpha_1
+$$
+
+$$ \sin\alpha_2 = \frac{(b_{12} + \sin\delta)}{h_y \sin\alpha_1};$$
+$$-\cos\alpha_2 = \frac{(b_{11} - \cos\delta)}{h_y \sin\alpha_1};$$
+
+
+\paragraph{RSR}
+
+$$R_1SR_2 = 
+\begin{pmatrix}
+ {s_x}\cos{\left( {\alpha_1}\right) } \cos{\left( {\alpha_2}\right) } - {s_y}\sin{\left( {\alpha_1}\right) } \sin{\left( {\alpha_2}\right) }  & 
+-{s_y}\sin{\left( {\alpha_1}\right) } \cos{\left( {\alpha_2}\right) } - {s_x}\cos{\left( {\alpha_1}\right) } \sin{\left( {\alpha_2}\right) } \\
+ {s_y}\cos{\left( {\alpha_1}\right) } \sin{\left( {\alpha_2}\right) } + {s_x}\sin{\left( {\alpha_1}\right) } \cos{\left( {\alpha_2}\right) }  & 
+ {s_y}\cos{\left( {\alpha_1}\right) } \cos{\left( {\alpha_2}\right) } - {s_x}\sin{\left( {\alpha_1}\right) } \sin{\left( {\alpha_2}\right) } 
+\end{pmatrix}
+$$
+
+
+
+$$a_{11} - a_{22} = - \left( {s_y}-{s_x}\right) \cos{\left( {\alpha_2}-{\alpha_1}\right) } $$
+
+$$a_{12} + a_{21} = \left( {s_y}-{s_x}\right) \sin{\left( {\alpha_2}-{\alpha_1}\right) } $$
+
+Обозначим 
+$$\alpha_2 - \alpha_1 = \delta;$$
+$$\alpha_2 + \alpha_1 = \sigma.$$
+
+$$
+R_1SR_2 = 
+\begin{pmatrix}
+ \frac{{s_y} \cos{\sigma}}{2} + \frac{{s_x} \cos{\sigma}}{2} - \frac{\cos{\delta} {s_y}}{2} + \frac{\cos{\delta} {s_x}}{2} &
+-\frac{{s_y} \sin{\sigma}}{2} - \frac{{s_x} \sin{\sigma}}{2} + \frac{\sin{\delta} {s_y}}{2} - \frac{\sin{\delta} {s_x}}{2}\\
+ \frac{{s_y} \sin{\sigma}}{2} + \frac{{s_x} \sin{\sigma}}{2} + \frac{\sin{\delta} {s_y}}{2} - \frac{\sin{\delta} {s_x}}{2} &
+ \frac{{s_y} \cos{\sigma}}{2} + \frac{{s_x} \cos{\sigma}}{2} + \frac{\cos{\delta} {s_y}}{2} - \frac{\cos{\delta} {s_x}}{2}
+\end{pmatrix}
+$$
+$$
+R_1SR_2 = 
+\begin{pmatrix}
+ \frac{(s_y + s_x) \cos{\sigma}}{2} - \frac{(s_y - s_x)\cos{\delta}}{2} &
+-\frac{(s_y + s_x) \sin{\sigma}}{2} + \frac{(s_y - s_x)\sin{\delta}}{2}\\
+ \frac{(s_y + s_x) \sin{\sigma}}{2} + \frac{(s_y - s_x)\sin{\delta}}{2} &
+ \frac{(s_y + s_x) \cos{\sigma}}{2} + \frac{(s_y - s_x)\cos{\delta}}{2}
+\end{pmatrix}
+$$
+
+$$a_{11} - a_{22} = - \left( {s_y}-{s_x}\right) \cos\delta $$
+
+$$a_{12} + a_{21} = \left( {s_y}-{s_x}\right) \sin\delta $$
+
+$$\left(a_{11} - a_{22}\right)^2 + \left( a_{12} + a_{21} \right)^2 = \left( {s_y}-{s_x}\right)^2.$$
+
+Обозначим
+$${s_y}-{s_x} = d_s;$$
+
+$$\left(a_{11} - a_{22}\right)^2 + \left( a_{12} + a_{21} \right)^2 = d_s^2.$$
+
+$$a_{11} - a_{22} = - d_s \cos\delta $$
+$$a_{12} + a_{21} = d_s \sin\delta $$
+
+$$\cos\delta = -\frac{a_{11} - a_{22}}{d_s} $$
+$$\sin\delta =  \frac{a_{12} + a_{21}}{d_s} $$
+
+$$\begin{cases}
+	s_x s_y = \det A,\\
+	{s_y} - {s_x} = d_s;
+\end{cases}
+\Rightarrow
+\begin{cases}
+	s_x = \frac{1}{2}\left(\pm \sqrt{d_s^2 + 4 \det A} - d_s\right),\\
+	s_y = \frac{1}{2}\left(\pm \sqrt{d_s^2 + 4 \det A} + d_s\right).
+\end{cases}
+$$
+Верхние и нижние знаки должны согласованы
+	
+$$s_x + s_y = \pm \sqrt{d_s^2 + 4 \det A}.$$
+	
+$$ (s_y + s_x) \cos{\sigma} - (s_y - s_x)\cos{\delta} = 2 a_{11};$$
+$$ (s_y + s_x) \cos{\sigma} = 2 a_{11} + (s_y - s_x)\cos{\delta};$$
+$$\cos{\sigma} = \frac{2 a_{11}}{(s_y + s_x)} + \frac{(s_y - s_x)}{(s_y + s_x)}\cos{\delta};$$
+
+$$-(s_y + s_x) \sin{\sigma} + (s_y - s_x)\sin{\delta} = 2 a_{12};$$
+$$(s_y + s_x) \sin{\sigma} = - 2 a_{12} + (s_y - s_x)\sin{\delta};$$
+$$\sin{\sigma} = - \frac{2 a_{12}}{(s_y + s_x)} + \frac{(s_y - s_x)}{(s_y + s_x)}\sin{\delta};$$
+
+$$\sin\sigma = \sin\alpha_1 \cos\alpha_2 + \cos\alpha_1 \sin\alpha_2;$$
+$$\cos\sigma = \cos\alpha_1 \cos\alpha_2 - \sin\alpha_1 \sin\alpha_2;$$
+$$\sin\delta = - \sin\alpha_1 \cos\alpha_2 + \cos\alpha_1 \sin\alpha_2;$$
+$$\cos\delta =\cos\alpha_1 \cos\alpha_2 + \sin\alpha_1 \sin\alpha_2;$$
+
+$$\sin\sigma + \sin\delta = 2\cos\alpha_1 \sin\alpha_2;$$
+$$\cos\sigma + \cos\delta = 2\cos\alpha_1 \cos\alpha_2;$$

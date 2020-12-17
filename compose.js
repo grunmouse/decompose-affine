@@ -63,6 +63,10 @@ const unallowed = {
 		//" S Sx ":"Неоднозначный масштаб"
 	},
 	"3":{
+		" D X D ":"a_11 = 1/a_22; разрешается относительно двух переменных",
+		" D Y D ":"a_11 = 1/a_22; разрешается относительно двух переменных",
+		" X D X ":"a_11 = 1/a_22; разрешается относительно двух переменных",
+		" Y D Y ":"a_11 = 1/a_22; разрешается относительно двух переменных"
 	},
 	"4":{
 	}
@@ -262,14 +266,22 @@ class Compose extends Components{
 			return false;
 		}
 		
-		let postfix = new Components();
-		postfix.push(p);
+		let allow = this.type().reduceRight((akk, t)=>{
+			if(akk === false) return akk;
+			
+			let postfix = [t, ...akk];
+
+			if(unallowed[postfix.length][untrim(postfix)]){
+				return false
+			}
+			
+			return postfix;
+			
+		}, [p.type]);
 		
-		postfix.unshift(this.last);
-		if(unallowed[postfix.length][postfix.typeString()]){
+		if(!allow){
 			return false;
 		}
-		
 		
 		return true;
 	}
@@ -362,7 +374,15 @@ class Compose extends Components{
 			type.shift();
 			for(let i=0; i<type.length; ++i){
 				let item = type[i];
-				if(['Sx', 'Sy', 'D'].includes(item)){
+				if(['Sx', 'Sy'].includes(item)){
+					replacement.push(item);
+					type[i] = 'S';
+					return [replacement, new Compose(untrim(type))];
+				}
+			}
+			for(let i=0; i<type.length; ++i){
+				let item = type[i];
+				if(item === 'D'){
 					replacement.push(item);
 					type[i] = 'S';
 					return [replacement, new Compose(untrim(type))];
