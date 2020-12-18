@@ -1,0 +1,75 @@
+\subsection{Первая группа разложений}
+
+Различные комбинации $X$, $Y$, $D$.
+Диагностический признак $\pos(R)=0$.
+
+$$DXY =
+ \begin{pmatrix} d \left(
+ h_x h_y + 1 \right) & d h_x \\
+\displaystyle\frac{h_y}{
+ d} & \displaystyle\frac{1}{d} \\
+ \end{pmatrix} $$
+ 
+$$XDY =
+ \begin{pmatrix} \displaystyle\frac{
+ h_x h_y}{d} + d & \displaystyle\frac{h_x}{d} \\
+\displaystyle\frac{
+ h_y}{d} & \displaystyle\frac{1}{d} \\
+ \end{pmatrix} $$
+
+$$XYD =
+ \begin{pmatrix} d
+ h_x h_y + d & \displaystyle\frac{h_x}{d} \\
+d h_y & \displaystyle\frac{1
+ }{d} \\
+\end{pmatrix} $$
+
+$$DYX =
+ \begin{pmatrix} d & d
+ h_x \\
+\displaystyle\frac{h_y}{d} & \displaystyle\frac{h_x h_y + 1
+ }{d} \\
+\end{pmatrix} $$
+
+
+$$YDX =
+ \begin{pmatrix} d & d
+ h_x \\
+d h_y & d h_x h_y + \displaystyle\frac{1}{d}
+ \\
+\end{pmatrix} $$
+
+$$YXD =
+ \begin{pmatrix} d & \displaystyle\frac{
+ h_x}{d} \\
+d h_y & \displaystyle\frac{h_x h_y
+ }{d} + \displaystyle\frac{1}{d} \\
+ \end{pmatrix} $$
+
+Видим следующие закономерности:
+
+\begin{itemize}
+	\item Если $\pos(X)<\pos(Y)$, $b_{22} = \frac{1}{d}$.
+	\item Если $\pos(X)>\pos(Y)$, $b_{11} = d$.
+	\item Если $\pos(X)<\pos(D)$, $b_{12} = \frac{h_x}{d}$.
+	\item Если $\pos(X)>\pos(D)$, $b_{12} = h_x d$.
+	\item Если $\pos(Y)<\pos(D)$, $b_{21} = h_y d$.
+	\item Если $\pos(Y)>\pos(D)$, $b_{21} = \frac{h_y}{d}$.
+\end{itemize}
+
+Опишем алгоритм:
+
+$$\begin{cases}
+	d = \frac{1}{b_{22}}, & \pos(X)<\pos(Y); \\
+	d = b_{11}, & \pos(X)>\pos(Y).
+\end{cases}$$
+
+$$\begin{cases}
+	h_x = b_{12} d, & \pos(X)<\pos(D); \\
+	h_x = \frac{b_{12}}{d}, & \pos(X)>\pos(D).
+\end{cases}$$
+
+$$\begin{cases}
+	h_y = \frac{b_{21}}{d}, & \pos(X)<\pos(D);\\
+	h_y = b_{21} d, & \pos(X)>\pos(D). \\
+\end{cases}$$

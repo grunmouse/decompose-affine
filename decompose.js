@@ -38,10 +38,40 @@ function factory(type, {h_x, h_y, s_x, s_y, sina, cosa}){
 	}
 }
 
+/**
+ * решает систему вида
+ * x*sin(y) = a,
+ * x*cos(y) = b;
+ * => [x, sin(y), cos(y)]
+ * или
+ * x*sin(y) = b,
+ * x*cos(y) = a;
+ * => [x, cos(y), sin(y)]
+ *
+ * @param a
+ * @param b
+ * @param sign - знак x
+ */
 function sincos(a, b, sign=1){
 	const s = sign * Math.hypot(a, b);
 	
 	return [s, a/s, b/s];
+}
+
+/**
+ * решает систему вида
+ * x/y = a,
+ * x*y = b
+ * разрешимо только если a и b имеют одинаковый знак
+ *
+ * @param a
+ * @param b
+ * @param sign - знак x
+ */
+function divmul(a, b, sign=1){
+	const x = sign * Math.sqrt(a*b);
+	const y = x/a;
+	return [x, y];
 }
 
 /**

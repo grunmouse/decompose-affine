@@ -1,0 +1,139 @@
+\subsection{Вторая группа разложений}
+
+Случаи, когда матрица поворота идёт первым или последним множителем.
+
+Диагностический признак $\pos(R)=1 \vee \pos(R)=3 $.
+
+$$DXR =
+ \begin{pmatrix} d \left(
+ h_x \sin\alpha + \cos\alpha \right) & d \left( h_x \cos\alpha - \sin\alpha
+ \right) \\
+\displaystyle\frac{\sin\alpha}{d} & \displaystyle\frac{\cos\alpha}{d} \\
+ \end{pmatrix} $$
+
+$$XDR =
+ \begin{pmatrix} \displaystyle\frac{h_x \sin\alpha}{d} + d \cos\alpha & \displaystyle\frac{h_x \cos\alpha}{d} - d \sin\alpha \\
+\displaystyle\frac{\sin\alpha}{d} & \displaystyle\frac{\cos\alpha}{d} \\
+ \end{pmatrix} $$
+ 
+$$RDX =
+ \begin{pmatrix} d \cos\alpha &
+ d h_x \cos\alpha - \displaystyle\frac{\sin\alpha}{d} \\
+d \sin\alpha & d h_x \sin\alpha + \displaystyle\frac{\cos\alpha}{d} \\
+ \end{pmatrix} $$
+ 
+$$RXD =
+ \begin{pmatrix} d \cos\alpha &
+ \displaystyle\frac{h_x \cos\alpha}{d} - \displaystyle\frac{\sin\alpha}{d} \\
+d \sin\alpha & \displaystyle\frac{
+ h_x \sin\alpha}{d} + \displaystyle\frac{\cos\alpha}{d} \\
+ \end{pmatrix} $$
+
+$$DYR =
+ \begin{pmatrix} d \cos\alpha &
+ - d \sin\alpha \\
+\displaystyle\frac{h_y \cos\alpha + \sin\alpha}{d} & \displaystyle\frac{\cos\alpha - h_y \sin\alpha}{d} \\
+ \end{pmatrix} $$
+ 
+$$YDR =
+ \begin{pmatrix} d \cos\alpha &
+ - d \sin\alpha \\
+d h_y \cos\alpha + \displaystyle\frac{\sin\alpha}{d} & \displaystyle\frac{\cos\alpha
+ }{d} - d h_y \sin\alpha \\
+ \end{pmatrix} $$
+
+$$RDY =
+ \begin{pmatrix} d \cos\alpha -
+ \displaystyle\frac{h_y \sin\alpha}{d} & - \displaystyle\frac{\sin\alpha}{d} \\
+\displaystyle\frac{h_y \cos\alpha}{d} + d \sin\alpha & \displaystyle\frac{\cos\alpha}{d} \\
+ \end{pmatrix} $$
+
+$$RYD =
+ \begin{pmatrix} d \cos\alpha -
+ d h_y \sin\alpha & - \displaystyle\frac{\sin\alpha}{d} \\
+d h_y \cos\alpha +
+ d \sin\alpha & \displaystyle\frac{\cos\alpha}{d} \\
+ \end{pmatrix} $$
+
+
+
+
+$$
+\begin{cases}
+	\begin{cases}
+		a_{11}^2 + a_{21}^2 = d^2, \\
+		\sin\alpha = a_{21}/d,\\
+		\cos\alpha = a_{11}/d,
+	\end{cases} & \pos(R)=1 \vee \pos(X)>0;\\
+	\begin{cases}
+		a_{21}^2 + a_{22}^2 = d^{-2}, \\
+		\sin\alpha = a_{21}d,\\
+		\cos\alpha = a_{22}d,
+	\end{cases} & \pos(R)=3 \vee \pos(X)>0;\\
+	\begin{cases}
+		a_{12}^2 + a_{22}^2 = d^{-2},\\
+		\sin\alpha = -a_{12}d,\\
+		\cos\alpha =  a_{22}d,
+	\end{cases} & \pos(R)=1 \vee \pos(Y)>0;\\
+	\begin{cases}
+		a_{11}^2 + a_{12}^2 = d^2,\\
+		\sin\alpha = -a_{12}/d,\\
+		\cos\alpha =  a_{11}/d,
+	\end{cases} & \pos(R)=3 \vee \pos(Y)>0.\\
+\end{cases}
+$$
+
+$$\begin{cases}
+	h_x  d\cos\alpha - d^{-1}\sin\alpha = a_{12}, & RSX;\\
+	h_x d^{-1}\cos\alpha - d^{-1}\sin\alpha = a_{12}, & RXS;\\
+	h_x d\cos\alpha - d\sin\alpha = a_{12}, & SXR;\\
+	h_x d^{-1}\cos\alpha - d\sin\alpha = a_{12}, & XSR.
+\end{cases}$$
+
+$$\begin{cases}
+	h_y d^{-1}\cos\alpha + d\sin\alpha = a_{21}, & RSY;\\
+	h_y d\cos\alpha + d\sin\alpha = a_{21}, & RYS;\\
+	h_y d^{-1}\cos\alpha + d^{-1}\sin\alpha = a_{21}, & SYR;\\
+	h_y d\cos\alpha + d^{-1}\sin\alpha = a_{21}, & YSR.
+\end{cases}$$
+
+Для этих уравнений можно составить обобщённый алгоритм решения, если ввести промежуточные переменные
+$b_x$, $b_y$, $k$, $p$, $s$.
+
+$$\begin{cases}
+	b_y = a_{21}, & \pos(X)>0;\\
+	b_y = -a_{12}, & \pos(Y)>0.\\
+\end{cases}$$
+
+$$\begin{cases}
+	b_x = a_{11}, & \pos(R) < \pos(X) \vee \pos(Y) > 0 \wedge \pos(R) = 3;\\
+	b_x = a_{22}, & \pos(R) < \pos(Y) \vee \pos(X) > 0 \wedge \pos(R) = 3.
+\end{cases}$$
+
+$$s^2 = b_x^2 + b_y^2;$$
+$$s = \pm \sqrt{b_x^2 + b_y^2}.$$
+Таким образом получаются два решения.
+
+$$\cos\alpha = \frac{b_x}{s};$$
+$$\sin\alpha = \frac{b_y}{s};$$
+$$k = \frac{b_y \det A}{s^2}.$$
+
+$$\begin{cases}
+	s = d,  & \pos(R) < \pos(X) \vee \pos(Y) > 0 \wedge \pos(R) = 3;\\
+	s = d^{-1} & \pos(R) < \pos(Y) \vee \pos(X) > 0 \wedge \pos(R) = 3.
+\end{cases}$$
+
+$$\begin{cases}
+	p = \frac{a_{12} + d}{\cos\alpha}, & \pos(X)>0;\\
+	p = \frac{a_{21} + d}{\cos\alpha}, & \pos(Y)>0.
+\end{cases}$$
+
+$$\begin{cases}
+	h_x = \frac{p}{d}, & \pos(S)<\pos(X);\\
+	h_x = pd, & \pos(S)>\pos(X).
+\end{cases}$$
+
+$$\begin{cases}
+	h_y = pd, & \pos(S)<\pos(Y);\\
+	h_y = \frac{p}{d}, & \pos(S)>\pos(Y).
+\end{cases}$$

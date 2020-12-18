@@ -81,8 +81,8 @@ function parse(str){
 			
 			return Object.create(proto[type], {
 				//type:{value:type},
-				number:{value:+number},
-				name:{value:name}
+				number:{value:+number, writable:true},
+				name:{value:name, writable:true}
 			})
 		});
 	}
@@ -94,7 +94,7 @@ function stringifyType(arr){
 }
 	
 
-for(let [type, obj] of Object.entries(proto)){
+for(const [type, obj] of Object.entries(proto)){
 	obj.type = type;
 	obj.diagonal = obj.diagonal || obj.scalar || false;
 	obj.up = obj.up || obj.diagonal;
@@ -105,6 +105,14 @@ for(let [type, obj] of Object.entries(proto)){
 	
 	obj.toString = function(){
 		return this.name || this.type || 'A';
+	}
+	
+	obj.clone = function(){
+		return Object.create(obj, {
+			//type:{value:type},
+			number:{value: this.number, writable:true},
+			name:{value:this.name, writable:true}
+		})		
 	}
 }
 
@@ -287,7 +295,8 @@ class Compose extends Components{
 	}
 	
 	clone(){
-		return new Compose(this);
+		let items = this.map(a=>a.clone());
+		return Compose.from(items);
 	}
 
 	slice(...arg){
@@ -364,7 +373,26 @@ class Compose extends Components{
 	isSortable(){
 		return this.some((item, i, arr)=>(i!==0 && hasSwap(item, arr[i-1])));
 	}
-	
+
+	enumerate(){
+		const type = this.type();
+		const typeset = new Set(this.type());
+		for(const t of typeset){
+			const count = type.reduce((akk, item)=>(akk + (item===t)), 0);
+			if(count>1){
+				let j = 1;
+				for(let i=0; i<this.length; ++i){
+					const item = this[i];
+					if(item.type === t){
+						item.number = j;
+						item.name = item.type + item.number;
+						++j;
+					}
+				}
+			}
+		}
+		//console.log(untrim(type), this.toString());
+	}
 
 	reducibilityToS(){
 		let type = this.type();

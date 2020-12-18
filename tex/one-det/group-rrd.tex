@@ -1,0 +1,49 @@
+\subsection{R D R}
+
+$$R_1DR_2 =
+ \begin{pmatrix} d \cos\alpha_1 \cos\alpha_2 - {{\sin\alpha_1 \sin\alpha_2}\over{d}} & - d \cos\alpha_1 \sin\alpha_2 - {{\sin\alpha_1 \cos\alpha_2}\over{d}} \\
+d \sin\alpha_1 \cos\alpha_2 + {{\cos\alpha_1 \sin\alpha_2}\over{d}} & {{\cos\alpha_1 \cos\alpha_2}\over{d}} - d \sin\alpha_1 \sin\alpha_2 \\
+ \end{pmatrix} $$
+
+
+Обозначим 
+$$\alpha_2 - \alpha_1 = \delta;$$
+$$\alpha_2 + \alpha_1 = \sigma.$$
+
+$$
+\begin{pmatrix}
+	 \frac{1}{2}\left( d + \frac{1}{d} \right)  \cos{\sigma} + \frac{1}{2}\left( d - \frac{1}{d} \right)  \cos{\delta} &
+	-\frac{1}{2}\left( d + \frac{1}{d} \right)  \sin{\sigma} + \frac{1}{2}\left( d - \frac{1}{d} \right)  \sin{\delta} \\
+	 \frac{1}{2}\left( d + \frac{1}{d} \right)  \sin{\sigma} - \frac{1}{2}\left( d - \frac{1}{d} \right)  \sin{\delta} & 
+	 \frac{1}{2}\left( d + \frac{1}{d} \right)  \cos{\sigma} - \frac{1}{2}\left( d - \frac{1}{d} \right)  \cos{\delta}
+\end{pmatrix}
+$$
+
+
+$$b_{11} - b_{22} =  \left( d - \frac{1}{d} \right) \cos\delta; $$
+$$b_{12} + b_{21} = -\left( d - \frac{1}{d} \right) \sin\delta. $$
+
+Введём дополнительную переменную
+
+$$k = d - \frac{1}{d};$$
+И решим систему стандартным алгоритмом
+$$\begin{cases}
+	k \cos\delta =  b_{11} - b_{22},\\
+	k \sin\delta = -b_{12} - b_{21};
+\end{cases}
+\Rightarrow
+\begin{cases}
+	k,\\
+	\cos\delta,\\
+    \sin\delta.
+\end{cases}$$
+
+$$d = \frac{-k \mp \sqrt{k+4}}{2}.$$
+
+Обозначим
+$$m = d + \frac{1}{d};$$
+$$m = 2d - k.$$
+
+$$m \cos{\sigma} + k \cos{\delta} = 2 b_{11};$$
+$$m \cos{\sigma} = 2 b_{11} - k \cos{\delta};$$
+$$\cos{\sigma} = \frac{2 b_{11} - k \cos{\delta}}{m}.$$

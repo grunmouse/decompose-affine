@@ -11,6 +11,37 @@ const{
 	TypedMap
 } = require('@grunmouse/special-map');
 
+const {
+	getTex
+} = require('./maxima.js');
+
+const convertIndex = (el)=>{
+	let name = el[0];
+	let b = el.slice(1);
+	if(b){
+		name += '_' + b;
+		//console.log(name);
+	}
+	return name;
+};
+
+async function makeMD(set){
+	printTree(set);
+	
+	let commands = [...set].map((item)=>{
+		let name = "'" + item.type().map(convertIndex).join("");
+		let equation = item.map(a=>a.name).map(convertIndex).join('.');
+		
+		equation = equation.replace(/^s\.'/, 's*');
+		
+		return `${name} = ${equation}`;
+	});
+	
+	let code = await getTex(commands, {displaystyle:true});
+	
+	await require('fs').promises.writeFile('sample.md', code);
+}
+
 function isIterable(obj){
 	return typeof obj !== 'string' && obj[Symbol.iterator] && obj[Symbol.iterator].call;
 }
@@ -152,6 +183,7 @@ function classMap(map, alters){
 var classing = new Map2OfSet();
 
 for(let item of genAll()){
+	item.enumerate();
 	classing
 		.get(item.varCount())
 		.get(item.detComponents().typeString())
@@ -247,18 +279,36 @@ classMap(classing.get(3),
 			
 			let D = type.reduce((akk, t)=>(akk + (t==='D')), 0);
 			
-			if(R === 0 && D === 0){
-				return 'XY';
+			let code = ('R'.repeat(R) + 'D'.repeat(D)).split('');
+			
+			if(code.length<2){
+				code.push('XY');
+			}
+			else if(code.length === 2){
+				code.push('X|Y');
 			}
 			
-			if(D === 1){
-				return 'D';
-			}
+			return code.join(' ');
 			
-			return 'other';
 		}
 	}
 );
+
+const classingByPosR =(items)=>{
+	let map = new MapOfSet();
+	for(let item of items){
+		if(item[1].type === 'R'){
+			map.add('* R *', item);
+		}
+		else{
+			map.add('R * * , * * R', item)
+		}
+	}
+	return map;
+}
+
+classify(classing.get(3).get(' '), 'R D X|Y', classingByPosR);
+classify(classing.get(3).get(' '), 'R XY', classingByPosR);
 
 //Три матрицы $S_x$, $S_y$ (одна из них входит дважды) - всегда допускает замену $S_x S_y = S$
 classing.get(4).delete(' Sx Sx Sy ');
@@ -273,16 +323,35 @@ classing.get(4).delete(' Sx Sx s ');
 classing.get(4).delete(' Sx Sy s ');
 classing.get(4).delete(' Sy Sy s ');
 
-//s_m.tex Исчерпано
+//classing\s_m.tex Перечислено
 classing.get(4).delete(' s ');
 
-//s.tex Исчерпано
+//classing\s.tex Перечислено
 classing.get(4).delete(' S ');
 
-//s_sx.tex Исчерпано
+//classing\s_sx.tex Перечислено
 classing.get(4).delete(' S Sx ');
 classing.get(4).delete(' S Sy ');
 
+//one-det\group-xy.tex Описано
+//classing.get(3).get(' ').delete('XY');
+//one-det\group-dxy.tex Описано
+//classing.get(3).get(' ').delete('D XY');
+//one-det\group-rxy-1
+//one-det\group-rxy-2
+//one-det\group-rxy-3 Описано
+//classing.get(3).get(' ').delete('R XY');
+//one-det\group-rdd Описано
+//classing.get(3).get(' ').delete('R D D');
+//one-det\group-rrd Описано
+//classing.get(3).get(' ').delete('R R D');
+//one-det\group-rrxy Описано
+//classing.get(3).get(' ').delete('R R X|Y');
+//one-det\group-rdxy-1 Описано
+//one-det\group-rdxy-2 Описано
+//classing.get(3).get(' ').delete('R D X|Y');
 
 printTree(classing.get(4));
 
+
+//makeMD(classing.get(3).get(' ').get('R D X|Y').get('R * * , * * R')).catch(err=>console.log(err.stack));
