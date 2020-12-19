@@ -44,8 +44,8 @@ function factory(type, {h_x, h_y, s_x, s_y, sina, cosa}){
  * x*cos(y) = b;
  * => [x, sin(y), cos(y)]
  * или
- * x*sin(y) = b,
  * x*cos(y) = a;
+ * x*sin(y) = b,
  * => [x, cos(y), sin(y)]
  *
  * @param a

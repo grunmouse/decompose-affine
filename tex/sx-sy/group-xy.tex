@@ -1,0 +1,55 @@
+\subsection{$S_x$, $S_y$, $X$, $Y$}
+
+$$S_xXS_yY = \begin{pmatrix} s_x \left( h_x h_y s_y + 1 \right) & h_x s_x s_y \\ h_y s_y & s_y \\ \end{pmatrix} $$
+$$S_xXYS_y = \begin{pmatrix} \left( h_x h_y + 1 \right) s_x & h_x s_x s_y \\ h_y & s_y \\ \end{pmatrix} $$
+$$S_yXS_xY = \begin{pmatrix} s_x + h_x h_y & h_x \\ h_y s_y & s_y \\ \end{pmatrix} $$
+$$S_yXYS_x = \begin{pmatrix} h_x h_y s_x + s_x & h_x \\ h_y s_x s_y & s_y \\ \end{pmatrix} $$
+$$XS_xYS_y = \begin{pmatrix} s_x + h_x h_y & h_x s_y \\ h_y & s_y \\ \end{pmatrix} $$
+$$XS_yYS_x = \begin{pmatrix} h_x h_y s_x s_y + s_x & h_x s_y \\ h_y s_x s_y & s_y \\ \end{pmatrix} $$
+$$S_xYS_yX = \begin{pmatrix} s_x & h_x s_x \\ h_y & s_y + h_x h_y \\ \end{pmatrix} $$
+$$S_xYXS_y = \begin{pmatrix} s_x & h_x s_x s_y \\ h_y & h_x h_y s_y + s_y \\ \end{pmatrix} $$
+$$S_yYS_xX = \begin{pmatrix} s_x & h_x s_x \\ h_y s_x s_y & \left( h_x h_y s_x + 1 \right) s_y \\ \end{pmatrix} $$
+$$S_yYXS_x = \begin{pmatrix} s_x & h_x \\ h_y s_x s_y & \left( h_x h_y + 1 \right) s_y \\ \end{pmatrix} $$
+$$YS_xXS_y = \begin{pmatrix} s_x & h_x s_x s_y \\ h_y s_x & h_x h_y s_x s_y + s_y \\ \end{pmatrix} $$
+$$YS_yXS_x = \begin{pmatrix} s_x & h_x \\ h_y s_x & s_y + h_x h_y \\ \end{pmatrix} $$ 
+
+Видим закономерности
+\begin{itemize}
+	\item Если $\pos(X) < \pos(Y)$, то $s_y = a_{22}$.
+	\item Если $\pos(X) > \pos(Y)$, то $s_x = a_{11}$.
+	\item Если $\pos(S_x) < \pos(Y) < \pos(S_y)$, то $h_y = a_{21}$.
+	\item Если $\pos(S_y) < \pos(Y) < \pos(S_x)$, то $h_y = \frac{a_{21}}{s_x s_y}$.
+	\item Если $\pos(S_y) < \pos(X) < \pos(S_x)$, то $h_x = a_{12}$.
+	\item Если $\pos(S_x) < \pos(X) < \pos(S_y)$, то $h_x = \frac{a_{12}}{s_x s_y}$.
+	\item Если $\pos(X) = 1$, то $h_x = \frac{a_{12}}{s_y}$.
+	\item Если $\pos(X) = 4$, то $h_x = \frac{a_{12}}{s_x}$.
+	\item Если $\pos(Y) = 1$, то $h_y = \frac{a_{21}}{s_x}$.
+	\item Если $\pos(Y) = 4$, то $h_y = \frac{a_{21}}{s_y}$.
+\end{itemize}
+
+Запишем:
+
+$$\begin{cases}
+	s_x = a_{11}, & \pos(X) > \pos(Y);\\
+	s_x = \frac{\det A}{a_{22}}, & \pos(X) < \pos(Y).
+\end{cases}$$
+
+$$\begin{cases}
+	s_y = a_{22}, & \pos(X) < \pos(Y);\\
+	s_y = \frac{\det A}{a_{11}}, & \pos(X) > \pos(Y).
+\end{cases}$$
+
+$$\begin{cases}
+	h_x = a_{12}, & \pos(S_y) < \pos(X) < \pos(S_x);\\
+	h_x = \frac{a_{12}}{s_x s_y}, & \pos(S_x) < \pos(X) < \pos(S_y);\\
+	h_x = \frac{a_{12}}{s_y}, & \pos(X) = 1;\\
+	h_x = \frac{a_{12}}{s_x}, & \pos(X) = 4.
+\end{cases}$$
+
+$$\begin{cases}
+	h_y = a_{21}, & \pos(S_x) < \pos(Y) < \pos(S_y);\\
+	h_y = \frac{a_{21}}{s_x s_y}, & \pos(S_y) < \pos(Y) < \pos(S_x);\\
+	h_y = \frac{a_{21}}{s_y}, & \pos(X) = 4;\\
+	h_y = \frac{a_{21}}{s_x}, & \pos(X) = 1.
+\end{cases}$$
+

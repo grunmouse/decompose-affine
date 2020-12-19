@@ -432,6 +432,19 @@ class Compose extends Components{
 		
 		return false;
 	}
+	
+	comparePos(){
+		let len = this.length;
+		let res = new Set()
+		for(let i = 0; i<len-1; ++i){
+			for(let j = i+1; j<len; ++j){
+				res.add(this[i].name + ' < ' + this[j].name);
+			}
+		}
+		res.add(this[0].name + ' = 1');
+		res.add(this.last.name + ' = ' + this.length);
+		return res;
+	}
 }
 
 module.exports = {

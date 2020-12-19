@@ -1,0 +1,71 @@
+\subsection{$R$ внутри}
+
+$$S_xXRS_y = \begin{pmatrix} \left( h_x \sin\alpha + \cos\alpha \right) s_x & s_x \left( h_x s_y \cos\alpha - s_y \sin\alpha \right) \\ \sin\alpha & s_y \cos\alpha \\ \end{pmatrix} $$
+$$S_xRS_yX = \begin{pmatrix} s_x \cos\alpha & s_x \left( h_x \cos\alpha - s_y \sin\alpha \right) \\ \sin\alpha & s_y \cos\alpha + h_x \sin\alpha \\ \end{pmatrix} $$
+$$S_xRXS_y = \begin{pmatrix} s_x \cos\alpha & s_x \left( h_x s_y \cos\alpha - s_y \sin\alpha \right) \\ \sin\alpha & h_x s_y \sin\alpha + s_y \cos\alpha \\ \end{pmatrix} $$
+$$XS_xRS_y = \begin{pmatrix} s_x \cos\alpha + h_x \sin\alpha & h_x s_y \cos\alpha - s_x s_y \sin\alpha \\ \sin\alpha & s_y \cos\alpha \\ \end{pmatrix} $$
+
+$$S_xYRS_y = \begin{pmatrix} s_x \cos\alpha & - s_x s_y \sin\alpha \\ h_y \cos\alpha + \sin\alpha & s_y \cos\alpha - h_y s_y \sin\alpha \\ \end{pmatrix} $$
+$$S_xRS_yY = \begin{pmatrix} s_x \left( \cos\alpha - h_y s_y \sin\alpha \right) & - s_x s_y \sin\alpha \\ h_y s_y \cos\alpha + \sin\alpha & s_y \cos\alpha \\ \end{pmatrix} $$
+$$S_xRYS_y = \begin{pmatrix} \left( \cos\alpha - h_y \sin\alpha \right) s_x & - s_x s_y \sin\alpha \\ h_y \cos\alpha + \sin\alpha & s_y \cos\alpha \\ \end{pmatrix} $$
+$$YS_xRS_y = \begin{pmatrix} s_x \cos\alpha & - s_x s_y \sin\alpha \\ h_y s_x \cos\alpha + \sin\alpha & s_y \cos\alpha - h_y s_x s_y \sin\alpha \\ \end{pmatrix} $$
+
+$$S_yXRS_x = \begin{pmatrix} h_x s_x \sin\alpha + s_x \cos\alpha & h_x \cos\alpha - \sin\alpha \\ s_x s_y \sin\alpha & s_y \cos\alpha \\ \end{pmatrix} $$
+$$S_yRS_xX = \begin{pmatrix} s_x \cos\alpha & h_x s_x \cos\alpha - \sin\alpha \\ s_x s_y \sin\alpha & \left( h_x s_x \sin\alpha + \cos\alpha \right) s_y \\ \end{pmatrix} $$
+$$S_yRXS_x = \begin{pmatrix} s_x \cos\alpha & h_x \cos\alpha - \sin\alpha \\ s_x s_y \sin\alpha & \left( h_x \sin\alpha + \cos\alpha \right) s_y \\ \end{pmatrix} $$
+$$XS_yRS_x = \begin{pmatrix} h_x s_x s_y \sin\alpha + s_x \cos\alpha & h_x s_y \cos\alpha - \sin\alpha \\ s_x s_y \sin\alpha & s_y \cos\alpha \\ \end{pmatrix} $$
+
+$$S_yYRS_x = \begin{pmatrix} s_x \cos\alpha & - \sin\alpha \\ \left( h_y s_x \cos\alpha + s_x \sin\alpha \right) s_y & \left( \cos\alpha - h_y \sin\alpha \right) s_y \\ \end{pmatrix} $$
+$$S_yRS_xY = \begin{pmatrix} s_x \cos\alpha - h_y \sin\alpha & - \sin\alpha \\ \left( s_x \sin\alpha + h_y \cos\alpha \right) s_y & s_y \cos\alpha \\ \end{pmatrix} $$
+$$S_yRYS_x = \begin{pmatrix} s_x \cos\alpha - h_y s_x \sin\alpha & - \sin\alpha \\ \left( h_y s_x \cos\alpha + s_x \sin\alpha \right) s_y & s_y \cos\alpha \\ \end{pmatrix} $$
+$$YS_yRS_x = \begin{pmatrix} s_x \cos\alpha & - \sin\alpha \\ s_x s_y \sin\alpha + h_y s_x \cos\alpha & s_y \cos\alpha - h_y \sin\alpha \\ \end{pmatrix} $$ 
+
+\begin{itemize}
+	\item $\pos(X)>0 \wedge Sx < R < Sy$, $a21 = \sin\alpha$
+	\item $\pos(Y)>0 \wedge Sx < R < Sy$, $a12 = - s_x s_y \sin\alpha$
+	\item $\pos(X)>0 \wedge Sy < R < Sx$, $a21 = s_x s_y \sin\alpha$
+	\item $\pos(Y)>0 \wedge Sy < R < Sx$, $a12 = - \sin\alpha$
+	\item $\pos(X) >0 \wedge \pos(X) < \pos(R)$, $a_{22} = s_y \cos\alpha$
+	\item $\pos(X) >0 \wedge \pos(R) < \pos(X)$, $a_{11} = s_x \cos\alpha$
+	\item $\pos(Y) >0 \wedge \pos(R) < \pos(Y)$, $a_{22} = s_y \cos\alpha$
+	\item $\pos(Y) >0 \wedge \pos(Y) < \pos(R)$, $a_{11} = s_x \cos\alpha$
+\end{itemize}
+
+$$\begin{cases}
+	\sin\alpha = a_{21},                & \pos(X)>0 \wedge Sx < R < Sy;\\
+	\sin\alpha = -\frac{a_{12}}{\det A},& \pos(X)>0 \wedge Sx < R < Sy;\\
+	\sin\alpha = \frac{a_{21}}{\det A}, & \pos(Y)>0 \wedge Sy < R < Sx;\\
+	\sin\alpha = -a12,                  & \pos(Y)>0 \wedge Sy < R < Sx.
+\end{cases}$$
+
+$$\begin{cases}
+	s_y = \frac{a_{22}}{\cos\alpha}, & \pos(X) >0 \wedge \pos(X) < \pos(R);\\
+	s_y = \frac{a_{22}}{\cos\alpha}, & \pos(Y) >0 \wedge \pos(R) < \pos(Y);
+\end{cases}$$
+$$\begin{cases}
+	s_x = \frac{a_{11}}{\cos\alpha}, & \pos(X) >0 \wedge \pos(R) < \pos(X);\\
+	s_x = \frac{a_{11}}{\cos\alpha}, & \pos(Y) >0 \wedge \pos(Y) < \pos(R).
+\end{cases}$$
+
+$$\begin{cases}
+	C = A S_x^{-1} R^T, & \pos(S_x)=4 \wedge \pos(R)=3;\\
+	C = A S_y^{-1} R^T, & \pos(S_y)=4 \wedge \pos(R)=3;\\
+	C = R^T S_x^{-1} A, & \pos(S_x)=1 \wedge \pos(R)=2;\\
+	C = R^T S_y^{-1} A, & \pos(S_y)=1 \wedge \pos(R)=2.
+\end{cases}$$
+
+$$\begin{cases}
+	c_{12} = a_{12} \cos\alpha + \frac{a_{11}}{S_x} \sin\alpha, & \pos(S_x)=4 \wedge \pos(R)=3;\\
+	c_{12} = \frac{a_{12}}{S_y} \cos\alpha + a_{11} \sin\alpha, & \pos(S_y)=4 \wedge \pos(R)=3;\\
+	c_{12} = \frac{a_{12}}{S_x} \cos\alpha + a_{22} \sin\alpha, & \pos(S_x)=1 \wedge \pos(R)=2;\\
+	c_{12} = a_{12} \cos\alpha + \frac{a_{22}}{S_y} \sin\alpha, & \pos(S_y)=1 \wedge \pos(R)=2.
+\end{cases}$$
+
+$$\begin{cases}
+	c_{21} = \frac{a_{21}}{S_x} \cos\alpha - a_{22} \sin\alpha, & \pos(S_x)=4 \wedge \pos(R)=3;\\
+	c_{21} = a_{21} \cos\alpha - \frac{a_{22}}{S_y} \sin\alpha, & \pos(S_y)=4 \wedge \pos(R)=3;\\
+	c_{21} = a_{21} \cos\alpha - \frac{a_{11}}{S_x} \sin\alpha, & \pos(S_x)=1 \wedge \pos(R)=2;\\
+	c_{21} = \frac{a_{21}}{S_y} \cos\alpha - a_{11} \sin\alpha, & \pos(S_y)=1 \wedge \pos(R)=2.
+\end{cases}$$
+
+

@@ -1,0 +1,48 @@
+\subsection{$R$ скраю и $X$ или $Y$}
+
+$$S_xXS_yR = \begin{pmatrix} s_x \left( h_x s_y \sin\alpha + \cos\alpha \right) & s_x \left( h_x s_y \cos\alpha - \sin\alpha \right) \\ s_y \sin\alpha & s_y \cos\alpha \\ \end{pmatrix} $$
+$$S_yXS_xR = \begin{pmatrix} s_x \cos\alpha + h_x \sin\alpha & h_x \cos\alpha - s_x \sin\alpha \\ s_y \sin\alpha & s_y \cos\alpha \\ \end{pmatrix} $$
+$$S_xYS_yR = \begin{pmatrix} s_x \cos\alpha & - s_x \sin\alpha \\ s_y \sin\alpha + h_y \cos\alpha & s_y \cos\alpha - h_y \sin\alpha \\ \end{pmatrix} $$
+$$S_yYS_xR = \begin{pmatrix} s_x \cos\alpha & - s_x \sin\alpha \\ \left( h_y s_x \cos\alpha + \sin\alpha \right) s_y & \left( \cos\alpha - h_y s_x \sin\alpha \right) s_y \\ \end{pmatrix} $$
+$$RS_xXS_y = \begin{pmatrix} s_x \cos\alpha & h_x s_x s_y \cos\alpha - s_y \sin\alpha \\ s_x \sin\alpha & h_x s_x s_y \sin\alpha + s_y \cos\alpha \\ \end{pmatrix} $$
+$$RS_yXS_x = \begin{pmatrix} s_x \cos\alpha & h_x \cos\alpha - s_y \sin\alpha \\ s_x \sin\alpha & s_y \cos\alpha + h_x \sin\alpha \\ \end{pmatrix} $$
+$$RS_xYS_y = \begin{pmatrix} s_x \cos\alpha - h_y \sin\alpha & - s_y \sin\alpha \\ s_x \sin\alpha + h_y \cos\alpha & s_y \cos\alpha \\ \end{pmatrix} $$
+$$RS_yYS_x = \begin{pmatrix} s_x \cos\alpha - h_y s_x s_y \sin\alpha & - s_y \sin\alpha \\ h_y s_x s_y \cos\alpha + s_x \sin\alpha & s_y \cos\alpha \\ \end{pmatrix} $$ 
+
+$$\begin{cases}
+	\begin{cases}
+		s_y \sin\alpha = a_{21},\\
+		s_y \cos\alpha = a_{22},
+	\end{cases} & \pos(R) = 4 \wedge \pos(X)>0;\\
+	\begin{cases}
+		s_x \cos\alpha = a_{11},\\
+		s_x \sin\alpha = - a_{12},
+	\end{cases} & \pos(R) = 4 \wedge \pos(Y)>0;\\
+	\begin{cases}
+		s_x \cos\alpha = a_{11},\\
+		s_x \sin\alpha = a_{21},
+	\end{cases} & \pos(X) > \pos(R);\\
+	\begin{cases}
+		s_y \cos\alpha = a_{22},\\
+		s_y \sin\alpha = - a_{12},
+	\end{cases} & \pos(Y) > \pos(R).
+\end{cases}$$
+
+$$\begin{cases}
+	C = A R^T, & \pos(R) = 4;\\
+	C = R^T A, & \pos(R) = 1.
+\end{cases}$$
+
+$h_x$ или $h_y$ находится из матрицы $C$ разложением треугольной матрицы.
+Для этого потребуется $c_{12}$ или $c_{21}$ соответственно.
+
+$$\begin{cases}
+	c_{12} = a_{12} \cos\alpha + a_{11} \sin\alpha, & \pos(R) = 4;\\
+	c_{12} = a_{12} \cos\alpha + a_{22} \sin\alpha, & \pos(R) = 1.
+\end{cases}$$
+$$\begin{cases}
+	c_{21} = a_{21} \cos\alpha - a_{22} \sin\alpha, & \pos(R) = 4;\\
+	c_{21} = a_{21} \cos\alpha - a_{11} \sin\alpha, & \pos(R) = 1.
+\end{cases}$$
+
+
