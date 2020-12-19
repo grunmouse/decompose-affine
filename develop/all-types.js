@@ -1,4 +1,6 @@
 
+const colors = require('colors');
+
 const Matrix = require('../matrix.js');
 
 const {
@@ -25,21 +27,36 @@ const convertIndex = (el)=>{
 	return name;
 };
 
-async function makeMD(set){
-	printTree(set);
+async function doMaxima(set){
 	
-	let commands = [...set].map((item)=>{
+	let array = [...set];
+	
+	let commands = array.map((item)=>{
 		let name = "'" + item.type().map(convertIndex).join("");
 		let equation = item.map(a=>a.name).map(convertIndex).join('.');
 		
 		equation = equation.replace(/^s\.'/, 's*');
 		
-		return `${name} = ${equation}`;
+		return `${name} = ${equation}, trigreduce, trigsimp`;
 	});
 	
-	let code = await getTex(commands, {displaystyle:true});
+	let code = await getTex(commands, {displaystyle:true, inline:true, angle:true});
 	
+	
+	let eq = code.split(/\$\$\s*\$\$/g);
+	
+	
+	let arr = array.map((item, i)=>([item, eq[i].replace(/\$\$/,'')]));
+	
+	return [code, arr];
+}
+
+async function makeMD(set){
+	printTree(set);
+	let [code, arr] = await doMaxima(set);
 	await require('fs').promises.writeFile('sample.md', code);
+	
+	return arr;
 }
 
 function isIterable(obj){
@@ -180,6 +197,40 @@ function classMap(map, alters){
 //throw new Error('stop');
 //============
 
+const classingByCountRD = (item)=>{
+	let type = item.type();
+	
+	let R = type.reduce((akk, t)=>(akk + (t==='R')), 0);
+	
+	let D = type.reduce((akk, t)=>(akk + (t==='D')), 0);
+	
+	let code = ('R'.repeat(R) + 'D'.repeat(D)).split('');
+	
+	if(code.length<2){
+		code.push('XY');
+	}
+	else if(code.length === 2){
+		code.push('X|Y');
+	}
+	
+	return code.join(' ');
+	
+};
+
+const classingByPosR =(items)=>{
+	let map = new MapOfSet();
+	for(let item of items){
+		if(item.bracketComponents().type().includes('R')){
+			map.add('R * , * R', item)
+		}
+		else{
+			map.add('* R *', item);
+		}
+	}
+	return map;
+}
+
+
 var classing = new Map2OfSet();
 
 for(let item of genAll()){
@@ -205,36 +256,16 @@ const sx_sy = (item)=>{
 		return 'XY';
 	}
 	
+	if(R === 1){
+		return 'R'
+	}
+	
 	return 'other';
 };
 
 classMap(classing.get(4), 
 	{
-		' S ': (item)=>{
-			
-			let type = item.type();
-			
-			let R = type.reduce((akk, t)=>(akk + (t==='R')), 0);
-			
-			if(R === 0){
-				return ' X Y ';
-			}
-			else if(R === 1){
-				if(type.includes('D')){
-					return ' D R ';
-				}
-
-				if(type.indexOf('R') === 1){
-					return ' * R * ';
-				}
-				else{
-					return ' R * * , * * R ';
-				}
-			}
-			
-			return untrim(type);
-			
-		},
+		' S ': classingByCountRD,
 		' s ': (item)=>{
 			let nodet = item.nodetComponents();
 			
@@ -265,9 +296,9 @@ classMap(classing.get(4),
 			return 'other';
 		},
 		
-		' Sx Sx ':sx_sy,
-		' Sx Sy ':sx_sy,
-		' Sy Sy ':sx_sy
+		' Sx Sx ':classingByCountRD,
+		' Sx Sy ':classingByCountRD,
+		' Sy Sy ':classingByCountRD
 	}
 );
 classMap(classing.get(3), 
@@ -290,25 +321,42 @@ classMap(classing.get(3),
 			
 			return code.join(' ');
 			
+		},
+		
+		" S " :(item)=>{
+			if(item.isTriangle()){
+				return 'triangle';
+			}
+			
+			return 'other';
+		}		,
+		" Sx Sy " :(item)=>{
+			if(item.isTriangle()){
+				return 'triangle';
+			}
+			
+			return 'other';
 		}
 	}
 );
 
-const classingByPosR =(items)=>{
-	let map = new MapOfSet();
-	for(let item of items){
-		if(item[1].type === 'R'){
-			map.add('* R *', item);
-		}
-		else{
-			map.add('R * * , * * R', item)
-		}
-	}
-	return map;
+
+function intersect(s1, s2){
+	return new Set([...s2].filter(x => s1.has(x)));
+}
+
+function join(s1, s1){
+	return new Set([...s1, ...s2]);
+}
+
+function cut(m, n){
+	return new Set([...m].filter(x => !m.has(n)));
 }
 
 classify(classing.get(3).get(' '), 'R D X|Y', classingByPosR);
 classify(classing.get(3).get(' '), 'R XY', classingByPosR);
+
+classify(classing.get(4).get(' Sx Sy '), 'R XY', classingByPosR);
 
 //Три матрицы $S_x$, $S_y$ (одна из них входит дважды) - всегда допускает замену $S_x S_y = S$
 classing.get(4).delete(' Sx Sx Sy ');
@@ -326,12 +374,19 @@ classing.get(4).delete(' Sy Sy s ');
 //classing\s_m.tex Перечислено
 classing.get(4).delete(' s ');
 
-//classing\s.tex Перечислено
+//classing\s.tex Перечислено; /s/*tex Описано
 classing.get(4).delete(' S ');
 
 //classing\s_sx.tex Перечислено
 classing.get(4).delete(' S Sx ');
 classing.get(4).delete(' S Sy ');
+
+classing.get(4).get(' Sx Sy ').delete(' Sx Sy => S ');
+classing.get(4).get(' Sx Sy ').delete(' Sx D => S ');
+classing.get(4).get(' Sx Sy ').delete(' Sy D => S ');
+//
+classing.get(4).get(' Sx Sy ').delete('XY');
+classing.get(4).get(' Sx Sy ').delete('R XY');
 
 //one-det\group-xy.tex Описано
 //classing.get(3).get(' ').delete('XY');
@@ -351,7 +406,92 @@ classing.get(4).delete(' S Sy ');
 //one-det\group-rdxy-2 Описано
 //classing.get(3).get(' ').delete('R D X|Y');
 
+function a11(str){
+	let pat = new RegExp('\\{pmatrix\\}\\s*'+str+'\\s+&');
+	return ([item, eq])=>(pat.test(eq));
+}
+
+function a22(str){
+	let pat = new RegExp('&\\s+' + str + '\\s*(?:\\\\\\\\\\s+)?\\\\end\{pmatrix\}');
+	return ([item, eq])=>(pat.test(eq));
+}
+
+function a21(str){
+	let pat = new RegExp('\\\\\\\\\\s+' + str + '\\s+&');
+	return ([item, eq])=>(pat.test(eq));
+}
+
+function a12(str){
+	let pat = new RegExp('&\\s+' + str + '\\s*\\\\\\\\');
+	return ([item, eq])=>(pat.test(eq));	
+}
+
+function elFilter([name, value]){
+	let key = [name, value].join(' = ');
+	
+	value = value.replace(/\\/g, '\\\\');
+	value = value.replace(/\s*(\\\\)/g, '\\s*$1');
+	value = value.replace(/\s+/g, '\\s+');
+	
+	let reg = {
+		a11:new RegExp('\\{pmatrix\\}\\s*'+value+'\\s+&'),
+		a22:new RegExp('&\\s+' + value + '\\s*(?:\\\\\\\\\\s+)?\\\\end\{pmatrix\}'),
+		a12:new RegExp('&\\s+' + value + '\\s*\\\\\\\\'),
+		a21:new RegExp('\\\\\\\\\\s+' + value + '\\s+&')
+	};
+	
+	let pat = reg[name];
+	//console.log(pat);
+	
+	let fun = ([item, eq])=>(pat.test(eq));	
+	
+	return [key, fun];
+}
+
+function positionAnalyse(eq, cond){
+	let pair = eq.map(([item, eq])=>([item.comparePos(), eq]));
+	let positions = pair.map(([pos, eq])=>(pos));
+	
+	return cond.map(elFilter).map(([key, fun])=>{
+		const sel = pair.filter(fun).map(([pos, eq])=>(pos));
+		
+		console.log(sel);
+		
+		const set = sel.length ? sel.reduce(intersect) : new Set();
+		
+		return [key, set, sel.length];
+	});
+}
+
 printTree(classing.get(4));
 
 
-//makeMD(classing.get(3).get(' ').get('R D X|Y').get('R * * , * * R')).catch(err=>console.log(err.stack));
+async function main(){
+	let [code, eq] = await doMaxima(classing.get(4).get(' Sx Sy ').get('R R X|Y'));
+	//console.log(eq);
+	
+	await require('fs').promises.writeFile('sample.md', code);
+
+	//let arr = eq.filter(a21('\\\\sin\\\\alpha')).map(([item, eq])=>(item.comparePos()));
+	//console.log(arr);
+	//eq = eq.filter(s=>(s[0].type().includes('Y')));
+	
+	let res = positionAnalyse(eq, [
+		//['a21', '\\sin\\alpha'],
+		//['a21', 's_x s_y \\sin\\alpha'],
+		//['a12', '- s_x s_y \\sin\\alpha'],
+		//['a12', '- \\sin\\alpha'],
+		//['a22', 's_y \\cos\\alpha'],
+		//['a11', 's_x \\cos\\alpha']
+	]);
+	
+	for(let [key, un, ctrl] of res){
+		if(ctrl === 0){
+			throw new Error(key);
+		}
+
+		console.log(key.white+ ' :', [...un].map(x=>x.green).join(' & '));
+	}
+}
+
+main().catch(err=>console.log(err.stack));

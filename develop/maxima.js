@@ -52,20 +52,33 @@ async function getTex(commands, options){
 	
 	
 	code = code.replace(/\\ifx\\endpmatrix\\undefined((?:[^\\]|\\(?!else))*)\\else((?:[^\\]|\\(?!fi))*)\\fi/g, '$2');
-	//console.log(code);
 	code = code.replace(/\{\\it\s+([^\s}]*)\s*\}(?:_\{(\d)\})?/g, '$1$2');
-	code = code.replace(/\{\s*\{([^}]+)\}\s*\\over\s*\{([^}]+)\}\s*\}/g, '\\frac{$1}{$2}');
+	
+	//console.log(code);
 	code = code.replace(/\\[,;]/g, ' ');
 	code = code.replace(/\\([_\-])/g, '$1');
 	code = code.replace(/\\(sin|cos)\s+a/g, '\\$1\\alpha');
 	
 	code = code.replace(/_\{(\d)\}/g, '_$1');
+	code = code.replace(/\{\s*\{([^}]+)\}\s*\\over\s*\{([^}]+)\}\s*\}/g, '\\frac{$1}{$2}');
 	
 	for(let i=0; i<3; ++i){
 		code = code.replace(/(\\(?:sin|cos)\\alpha(?:_\d)?)\s+([shdab][_\a-z\d]*)/g, function(str, sin, v){
 			return v + ' ' + sin;
 		});
 	}
+	for(let i=0; i<3; ++i){
+		code = code.replace(/(\\(?:sin|cos)\s*\\left\((?:[^\\]+|\\(?!right\)))+\\right\))\s+([shdab][_\a-z\d]*)/g, function(str, sin, v){
+			return v + ' ' + sin;
+		});
+	}
+	
+	if(options.angle){
+		code = code.replace(/\\left\(\s*a_2\s*-\s*a_1\s*\\right\)/g, '\\delta');
+		code = code.replace(/\\left\(\s*a_2\s*\+\s*a_1\s*\\right\)/g, '\\sigma');
+		code = code.replace(/\\left\(\s*a_1\s*\+\s*a_2\s*\\right\)/g, '\\sigma');
+	}
+	
 	
 	for(let i=0; i<2; ++i){
 		code = code.replace(/(\S)([+\-=&]|\\(?:right|cr))/g, '$1 $2');
@@ -81,6 +94,12 @@ async function getTex(commands, options){
 	if(options.displaystyle){
 		code = code.replace(/\\frac/g, '\\displaystyle\\frac');
 	}
+	
+	if(options.inline){
+		code = code.replace(/[\r\n]+\s*(?!\$)/g, ' ');
+	}
+	
+	
 	
 	return code;
 }
